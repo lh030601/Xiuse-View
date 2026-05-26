@@ -1,0 +1,364 @@
+<div class="tab-pane bg active" id="memberSetting">
+	<section class="tools">
+		<ul class="breadcrumb">
+			<li class="title">餐厅设置</li>
+			<li class="active">
+				<a href="">会员管理</a>
+			</li>
+		</ul>
+		<div class="toolbar">
+			<div class="btn-group">
+				<a title="添加会员" data-toggle="toolbar-tooltip" class="btn" name="addMember">
+					<i class="fa fa-fw fa-user-plus"></i>添加会员
+				</a>
+				<a title="创建会员类型" data-toggle="toolbar-tooltip" class="btn" name="addMemberType">
+					<i class="fa fa-fw fa-user-plus"></i>创建会员类型
+				</a>
+			</div>
+		</div>
+	</section>
+	<div class="content">
+		<ul class="nav nav-dill nav-dill-2">
+			<li class="active">
+				<a ng-click="mCard()" data-toggle="tab">会员卡</a>
+			</li>
+			<li>
+				<a ng-click="mType()" data-toggle="tab">会员类型</a>
+			</li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active" id="memberCard">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="input-group">
+							<input type="text" placeholder="会员卡号或手机号" class="form-control" ng-model="number">
+							<span class="input-group-btn">
+							<button type="button" class="btn btn-primary">搜索</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<ul class="nav nav-dill nav-dill-4 nav-dill-max">
+					<li class="active">
+						<a ng-click="memberOpreate()" data-toggle="tab">会员</a>
+					</li>
+					<li>
+						<a ng-click="consumption()" data-toggle="tab">消费信息</a>
+					</li>
+					<li>
+						<a ng-click="rechargeRecord()" data-toggle="tab">充值记录</a>
+					</li>
+					<li>
+						<a ng-click="backMoneyRecord()" data-toggle="tab">返现记录</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane" id="memberOpreate">
+						<ul class="CardList">
+							<li class="heading">
+								<span class="CardName">姓名</span>
+								<span class="CardNum">卡号</span>
+								<span class="CardAmount">卡内余额</span>
+								<span class="CardType">会员类型</span>
+								<span class="CardTel">联系电话</span>
+							</li>
+							<li ng-repeat="x in members|filter:number|orderBy:['-MemberState','MemberName'] track by $index" class="CardItem"  ng-class="{'cancel':!x.MemberState}">
+								
+								<span ng-click="editmember(x.MemberId,x.MemberName,x.MemberCardNo,x.MemberClassifyId,x.MemberEmail,x.MemberCell)" class="CardName">{{x.MemberName}}</span>
+								<span ng-click="editmember(x.MemberId,x.MemberName,x.MemberCardNo,x.MemberClassifyId,x.MemberEmail,x.MemberCell)" class="CardNum">{{x.MemberCardNo}}</span>
+								<span ng-click="editmember(x.MemberId,x.MemberName,x.MemberCardNo,x.MemberClassifyId,x.MemberEmail,x.MemberCell)"  class="CardAmount">{{x.MemberAmount|currency : '￥'}}</span>
+								<span ng-click="editmember(x.MemberId,x.MemberName,x.MemberCardNo,x.MemberClassifyId,x.MemberEmail,x.MemberCell)" class="CardType">{{x.ClassifyName}}</span>
+								<span ng-click="editmember(x.MemberId,x.MemberName,x.MemberCardNo,x.MemberClassifyId,x.MemberEmail,x.MemberCell)" class="CardTel">{{x.MemberCell}}</span>
+								
+								<button class="btn btn-primary btn-sm" name="recommend">推荐</button>
+								<button class="btn btn-info btn-sm" ng-click="enabled(x.MemberId,x.MemberState)" name="enabled">启用</button>
+								<button class="btn btn-danger btn-sm" ng-click="enabled(x.MemberId,x.MemberState)" name="disabled">禁用</button>
+								<button class="btn btn-warning btn-sm" ng-click="AddRecharge(x.MemberId,x.MemberCardNo,x.MemberAmount)" name="top-up">充值</button>
+								<button class="btn btn-default btn-sm" name="SetPassWord" ng-click="setpassword(x.MemberId)">设置密码</button>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-pane" id="consumption">
+						<ul class="CardList">
+							<li class="heading">
+								<span class="CardNum">会员卡号</span>
+								<span class="CardConsumptionType">消费类型</span>
+								<span class="CardConsumption">消费金额</span>
+								<span class="CardAmount">可用余额</span>
+								<span class="CardPillTime">消费日期</span>
+							</li>
+							<li data-userid="" ng-repeat="x in consume|filter:number track by $index" class="CardItem">
+								<span class="CardNum">{{x.MemberCardNo}}</span>
+								<span class="CardConsumptionType">Amount</span>
+								<span class="CardConsumption">{{x.Amount|currency : '￥'}}</span>
+								<span class="CardAmount">{{x.Balance|currency : '￥'}}</span>
+								<span class="CardPillTime">{{x.ConsumptionTime|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+								<button data-userid="" class="btn btn-default btn-sm" name="">打印</button>
+							</li>
+
+						</ul>
+					</div>
+					<div class="tab-pane" id="rechargeRecord">
+						<ul class="CardList">
+							<li class="heading">
+								<span class="CardNum">会员卡号</span>
+								<span class="CardConsumptionType">充值类型</span>
+								<span class="CardConsumption">充值金额</span>
+								<span class="CardAmount">可用余额</span>
+								<span class="CardPillTime">充值日期</span>
+							</li>
+							<li data-userid="" ng-repeat="x in recharge|filter:number track by $index" class="CardItem">
+								<span class="CardNum">{{x.MemberCardNo}}</span>
+								<span class="CardConsumptionType">{{x.RechargeType}}</span>
+								<span class="CardConsumption">{{x.RechargeAmount|currency : '￥'}}</span>
+								<span class="CardAmount">{{x.Balance|currency : '￥'}}</span>
+								<span class="CardPillTime">{{x.RechargeTime|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+								<button data-userid="" class="btn btn-default btn-sm" name="">打印</button>
+
+							</li>
+
+						</ul>
+
+					</div>
+					<div class="tab-pane" id="backMoneyRecord">
+						<ul class="CardList">
+							<li class="heading">
+								<span class="CardNum">会员卡号</span>
+								<span class="CardConsumptionType">返现类型</span>
+								<span class="CardConsumption">返现金额</span>
+								<span class="CardAmount">可用余额</span>
+								<span class="CardPillTime">返现日期</span>
+							</li>
+							<li data-userid="" ng-repeat="x in rebates|filter:number track by $index" class="CardItem">
+								<span class="CardNum">{{x.MemberCardNo}}</span>
+								<span class="CardConsumptionType">{{x.RebatesType}}</span>
+								<span class="CardConsumption">{{x.RebatesAmount|currency : '￥'}}</span>
+								<span class="CardAmount">{{x.Balance|currency : '￥'}}</span>
+								<span class="CardPillTime">{{x.DateTime|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+								<button data-userid="" class="btn btn-default btn-sm" name="">打印</button>
+
+							</li>
+
+						</ul>
+
+					</div>
+				</div>
+
+			</div>
+			<div class="tab-pane" id="memberType">
+				<ul class="CardType">
+					<li class="heading">
+						<span class="CardTypeName">会员类型名称</span>
+						<span class="CardTypeNum">会员数量</span>
+					</li>
+					<li data-userid="" ng-repeat="x in membersType track by $index" class="CardTypeItem">
+						<span class="CardTypeName">{{x.ClassifyName}}</span>
+						<span class="CardTypeNum">{{x.ClassifyMemberNum}}</span>
+						<button data-userid="" class="btn btn-info btn-sm" name="Edit" ng-click="mtedit(x.ClassifyName,x.DiscountId,x.ClassRemark,x.MemberClassifyId)">编辑</button>
+						<button data-userid="" class="btn btn-danger btn-sm" name="Del" ng-click="mtdelete(x.ClassifyName,x.MemberClassifyId,x.ClassifyMemberNum)">删除</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+		
+<div class="myModal">	
+	<!--会员设置 ：会员充值-->
+		<div id="modalCardTopOn" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">会员充值</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal">
+
+							<div class="form-group row">
+								<label for="CardTopOnNum" class="col-sm-3 control-label">会员卡号</label>
+								<div class="col-sm-8">
+									<span class="label label-danger">
+									<i class="fa fa-fw fa-credit-card"></i>
+									<span id="CardTopOnNum">{{membercardn}}</span>
+									</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="CardTopOnType" class="col-sm-3 control-label">充值类型</label>
+								<div class="col-sm-8">
+									<select class="form-control" id="CardTopOnType">
+								  <option value="1">现金支付</option>
+								  <option value="2">刷卡支付</option>
+								  <option value="3">微信支付</option>
+								  <option value="4">支付宝支付</option>
+								</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="modalCardAccount" class="col-sm-3 control-label">可用余额</label>
+								<div class="col-sm-8">
+									<span class="label label-warning">
+									<span id="modalCardAccount">{{membera|currency : '￥'}}</span>
+									</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="CardAccountTopOn" class="col-sm-3 control-label">充值金额</label>
+								<div class="col-sm-8">
+									<input class="form-control" id="CardAccountTopOn" placeholder="请输入金额">
+								</div>
+							</div>
+
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-warning btn-lg col-xs-10 col-xs-offset-1" ng-click="rechargebtn(memberid,membercardn)">充值</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!--会员设置 ：添加会员、添加会员种类-->
+			<!--会员设置 ：添加会员、编辑会员-->
+			<div id="modalMember" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			  <div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">添加会员</h4>
+				  </div>
+				  <div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group row">
+							<label for="MemberClassType" class="col-sm-3 control-label">会员类型</label>
+							<div class="col-sm-8">
+								<select class="form-control" id="MemberClassType" >
+								  <option ng-repeat="x in memberCardType track by $index" value="{{x.id}}">{{x.name}}</option>
+								</select>
+							</div>
+							
+						</div>
+						<div class="form-group row">
+							<label for="MemberClassCell" class="col-sm-3 control-label">电话</label>
+							<div class="col-sm-8">
+							  <input class="form-control" id="MemberClassCell" placeholder="电话">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="MemberClassEmail" class="col-sm-3 control-label">邮箱</label>
+							<div class="col-sm-8">
+							  <input class="form-control" id="MemberClassEmail" placeholder="邮箱">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="MemberClassCardNum" class="col-sm-3 control-label"><span class="red">*</span>卡号</label>
+							<div class="col-sm-8">
+							<div class="input-group">
+						      <input type="text" class="form-control" id="MemberClassCardNum" placeholder="卡号">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" ng-click="getMemberId()" type="button">...</button>
+						      </span>
+						    </div><!-- /input-group -->
+						   </div>
+						</div>
+						<div class="form-group row">
+							<label for="MemberClassName" class="col-sm-3 control-label">姓名</label>
+							<div class="col-sm-8">
+							  <input class="form-control" id="MemberClassName" placeholder="姓名">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="MemberClassNone" class="col-sm-3 control-label">设置密码</label>
+							<div class="col-sm-8 check">
+								<div>
+									<input class="form-control"  type="password" id="MemberClassNone" placeholder="密码">
+									<input id='MemberClassNoneCheck' type="checkbox" checked="true" > 启用支付密码（会员支付密码）
+								</div>
+							</div>
+						 </div>
+					</form>						
+				  </div>
+				  <div class="modal-footer">
+				  <button class="btn btn-warning btn-lg  delete" ng-click="deletemember()">删除</button>
+				  <button class="btn btn-warning btn-lg " id="savemember" ng-click="savemember()">创建</button>
+				  <button class="btn btn-warning btn-lg " id="editsavemember" ng-click="editsavemember()">保存</button>
+				  </div>
+				</div>
+			  </div>
+			</div>	
+			<!--会员设置 ：添加会员类型、编辑会员类型-->
+			<div id="modalMemberType" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			  <div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">添加会员</h4>
+				  </div>
+				  <div class="modal-body">
+					<form class="form-horizontal">
+						
+						<div class="form-group row">
+							<label for="MemberTypeName" class="col-sm-3 control-label"><span class="red">*</span>类型名称</label>
+							<div class="col-sm-8">
+							  <input class="form-control" id="MemberTypeName" placeholder="类型名称">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="MemberTypeDiscount" class="col-sm-3 control-label">设置折扣</label>
+							<div class="col-sm-8">
+								<select class="form-control" id="MemberTypeDiscount">
+								  <option ng-repeat="x in discount track by $index"  value="{{x.DiscountId}}">{{x.DiscountName}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="MemberTypeRemark" class="col-sm-3 control-label">说明</label>
+							<div class="col-sm-8">
+							 <textarea id='MemberTypeRemark' class="form-control" rows="3"></textarea>
+						</div>
+					</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+				  <button class="btn btn-warning btn-lg " id="savemembertype" ng-click="savemtype()">创建</button>
+				  <button class="btn btn-warning btn-lg " id="editsavemembertype" ng-click="editsavemtype()">保存</button>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!--会员设置 ：编辑密码-->
+		<div id="modalMemberPassword" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">添加会员</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal">
+
+							
+							<div class="form-group row">
+								<label for="MemberNewPassword" class="col-sm-3 control-label"><span class="red">*</span>新密码</label>
+								<div class="col-sm-8">
+									<input class="form-control" type="password" id="MemberNewPassword" placeholder="新密码">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="MemberConfirmPassword" class="col-sm-3 control-label"><span class="red">*</span>确认新密码</label>
+								<div class="col-sm-8">
+									<input class="form-control" type="password" id="MemberConfirmPassword" placeholder="新密码">
+								</div>
+							</div>
+							<div class="form-group errormessage">
+									<label></label>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-warning btn-lg" ng-click="passwordsave()">保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>

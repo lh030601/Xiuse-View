@@ -1,0 +1,166 @@
+<div class="tab-pane bg  " id="discountSetting">
+	<section class="tools">
+		<ul class="breadcrumb">
+			<li class="title">餐厅设置</li>
+			<li class="">
+				<a href="">折扣设置</a>
+			</li>
+		</ul>
+		<div class="toolbar">
+			<div class="btn-group">
+				<a title="折扣或小费" ng-click="creatdis()" data-toggle="toolbar-tooltip" class="btn">
+					<i class="fa fa-fw fa-plus-square"></i>折扣或小费
+				</a>
+			</div>
+		</div>
+	</section>
+	<div class="content" id="discountmessage">
+		<div class="disSetting" ng-repeat="x in discount track by $index" ng-click="editdiscount(x)" ng-class="{'cancel':!x.DiscountState}">
+			<i class="fa fa-fw fa-strikethrough"></i>
+			<div class="disContent">
+				<span class="name" >{{x.DiscountName}}</span>
+				<span class="num" ng-show="!x.DiscountType">{{x.DiscountContent}}<i class="fa fa-fw">%</i>off</span>
+				<span class="num" ng-show="x.DiscountType">-<i class="fa fa-fw fa-rmb"></i>{{x.DiscountContent}}</span>
+			</div>
+		</div>
+		<!--<div class="disSetting cancel">
+			<i class="fa fa-fw fa-strikethrough"></i>
+			<div class="disContent">
+				<span class="name">九折折扣</span>
+				<span class="num">10%</span>
+			</div>
+		</div>-->
+	</div>
+</div>
+<div class="myModal">
+	<div id="modalDiscountSetting" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">{{discounttitle}}</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group row">
+							<label for="inputDiscountName" class="col-sm-3 control-label">折扣名称</label>
+							<div class="col-sm-8">
+								<input class="form-control" id="inputDiscountName" placeholder="折扣名称" ng-model="discountde.DiscountName">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputDiscountType" class="col-sm-3 control-label">折扣类型</label>
+							<div class="col-sm-8 ">
+								<div class="col-sm-6">
+									<input name="DiscountType" type="radio" ng-value="0" ng-change="changetype()" ng-model="discountde.DiscountType"> 百分比
+								</div>
+								<div class="col-sm-6">
+									<input name="DiscountType" type="radio" ng-value="1" ng-change="changetype()" ng-model="discountde.DiscountType"> 固定金额
+								</div>
+							</div>
+							<div class="col-sm-8 col-sm-offset-3">
+								<input class="form-control" id="inputDiscountContent" type="number" ng-model="discountde.DiscountContent" placeholder="{{displaceholder}}">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputDiscountArea" class="col-sm-3 control-label">折扣范围</label>
+							<div class="col-sm-8 check">
+								<div class="col-sm-6">
+									<input name="DiscountArea" type="radio" ng-value="-1" ng-model="discountde.DiscountMenus"> 全部菜品
+								</div>
+								<div class="col-sm-6">
+									<input name="DiscountArea" type="radio" ng-value="0" ng-click="discountms()"  ng-model="discountde.DiscountMenus"> 部分菜品
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputDiscountLimit" class="col-sm-3 control-label">折扣限制</label>
+							<div class="col-sm-8 check">
+								<div class="col-sm-6">
+									<input name="DiscountLimit" type="radio" ng-value="0" ng-model="discountde.DiscountSection"> 整单折扣
+								</div>
+								<div class="col-sm-6">
+									<input name="DiscountLimit" type="radio" ng-value="1" ng-model="discountde.DiscountSection"> 部分折扣
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputDiscountSate" class="col-sm-3 control-label">折扣状态</label>
+							<div class="col-sm-8 check">
+								<div class="col-sm-6">
+									<input name="DiscountSate" type="radio" ng-value="1" ng-model="discountde.DiscountState"> 启用
+								</div>
+								<div class="col-sm-6">
+									<input name="DiscountSate" type="radio" ng-value="0" ng-model="discountde.DiscountState"> 禁用
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputDiscountVerify" class="col-sm-3 control-label">需管理验证</label>
+							<div class="col-sm-8 check">
+								<div class="col-sm-6">
+									<input name="DiscountVerify" type="radio" ng-value="0" ng-model="discountde.DiscountVerification"> 启用
+								</div>
+								<div class="col-sm-6">
+									<input name="DiscountVerify" type="radio" ng-value="1" ng-model="discountde.DiscountVerification"> 禁用
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-warning btn-lg delete" ng-show="editflag" ng-click="deletediscount(discountde)">删除</button>
+					<button class="btn btn-warning btn-lg creat" ng-show="!editflag" ng-click="creatdiscount(discountde)">创建</button>
+					<button class="btn btn-warning btn-lg save" ng-show="editflag" ng-click="editdiscountsave(discountde)">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="modalDiscountMenus" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" ng-click="closemodal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">{{discounttitle}}</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class=" row">
+							<div class="form-group col-sm-6">
+								<label for="selectclassify" class="col-sm-4 control-label">分类</label>
+								<div class="col-sm-8">
+									<select class="form-control" name="classify" ng-model="onemenuc">
+										<option value="0">--请选择分类--</option>
+										<option  value="{{x.ClassifyId}}" ng-repeat="x in menuClassify|orderBy:'ClassifyNo' track by $index">{{x.ClassifyTag}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group col-sm-6">
+								<label for="selectmenudetail" class="col-sm-4 control-label">菜品</label>
+								<div class="col-sm-8">
+									<select class="form-control" name="menudetail" ng-model="onemenu" >
+										<option value="0" ng-selected="0">{{choosemenu}}</option>
+										<option value="{{x.MenuId}}" ng-repeat="x in menu|orderBy:'MenuNo' track by $index">{{x.MenuName}}</option>
+									</select>
+								</div>
+							</div>
+							<div>
+								<button class="btn btn-primary delete" ng-click="addmemus(onemenu)" >添加</button>
+							</div>
+						</div>
+						<div class="addmenu">
+                           <div class="menudet" ng-repeat="x in menuTag track by $index">
+										<span class="name">{{x.name}}</span>
+										<button class="close" type="button" ng-click="delectmtag($index)">×</button>								
+							</div>	
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-warning btn-lg creat"  ng-click="savechmenu(menuTag)">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

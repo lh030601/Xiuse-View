@@ -1,0 +1,200 @@
+<div class="tab-pane bg " id="menusSetting">
+						<section class="tools">
+							<ul class="breadcrumb">
+								<li class="title">餐厅设置</li>
+								<li class="active"><a href="">餐单设置</a></li>
+							</ul>
+							<div class="toolbar">
+								<div class="btn-group">
+									<a title="添加分类"  data-toggle="toolbar-tooltip" class="btn" name="addClass" ng-click="addclass()">
+										<i class="fa fa-fw fa-plus-square"></i>添加分类
+									</a>
+									<a title="添加菜品"  data-toggle="toolbar-tooltip" class="btn" name="addMenus" ng-click="addMenus()">
+										<i class="fa fa-fw fa-plus-square"></i>添加菜品
+									</a>
+
+								</div>
+							</div>
+						</section>
+						<div class="content">
+							<div class="left">
+								<div class="todo-search">
+									<span class="todo-search-field">菜品分类</span>
+								</div>
+								<ul id="menuclass">
+									<li ng-repeat="x in menuClassify|orderBy:'ClassifyNo' track by $index" data-id="{{x.ClassifyId}}" ng-class="{'active':x.ClassifyId==cid}">
+										<div class="todo-ico">
+											<img src="src/images/54-chef-restaurant.png" class="img-responsive img-circle" />
+										</div>
+										<a  data-toggle="tab" class="todo-name" ng-click='getallmenu(x.ClassifyId)'>{{x.ClassifyTag}}</a>
+										<div class="todo-op" title="编辑分类">
+											<i class="fa fa-fw fa-edit" ng-click='editmenuclass(x)'></i>
+										</div>
+										<div class="clearfix"></div>
+									</li>
+								</ul>
+							</div>
+							<div class="right tab-content" id="menudetail">
+								<ul class="tab-pane active" >
+									<li class="setMenusLi" ng-repeat="x in menu|orderBy:'MenuNo' track by $index" ng-click="editmenu(x)">
+										<span>{{x.MenuPrice|currency : '￥'}}</span>
+										<span>{{x.MenuName}}</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+<div class="myModal">
+<!--餐单设置-->
+<!--菜品设置、添加菜品、编辑菜品-->
+		<div id="modalMenusSetting" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			  <div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">{{menudtitle}}</h4>
+				  </div>
+				  <div class="modal-body">
+					
+						 <!-- Nav tabs -->
+						  <ul class="nav nav-tabs" id='modtab'>
+							<li><a href="/#modalMenusSetBase"  data-toggle="tab">基本设置</a></li>
+							<li><a href="/#modalMenusSetPic" data-toggle="tab">图片设置</a></li>
+							<li><a href="/#modalMenusSetTag" data-toggle="tab">标签设置</a></li>
+						  </ul>
+						  <!-- Tab panes -->
+						  <div class="tab-content">
+							<div class="tab-pane active" id="modalMenusSetBase">
+							</br>
+								<form class="form-horizontal">
+									<div class="form-group row">
+										<label for="MenusSetName" class="col-sm-3 control-label">菜品名称</label>
+										<div class="col-sm-8">
+										  <input class="form-control" id="MenusSetName" ng-model="menudetail.MenuName" placeholder="菜品名称">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="MenusSetPrice" class="col-sm-3 control-label">价格</label>
+										<div class="col-sm-8">
+										  <input class="form-control"  type="number" min="0" id="MenusSetPrice" ng-model="menudetail.MenuPrice" placeholder="价格">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="MenusSetShortcut" class="col-sm-3 control-label">快捷码</label>
+										<div class="col-sm-8">
+										  <input class="form-control" id="MenusSetShortcut" ng-model="menudetail.MenuShortcut" placeholder="快捷码">
+										</div>
+									</div>
+									<div class="form-group row" ng-show="editflag">
+										<label for="MenusSetOrder" class="col-sm-3 control-label">排序顺序</label>
+										<div class="col-sm-8">
+										  <input class="form-control" id="MenusSetOrder" ng-model="menudetail.MenuNo" placeholder="排序顺序">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="MenusSetInstruction" class="col-sm-3 control-label">菜品介绍</label>
+										<div class="col-sm-8">
+										  <input class="form-control" id="MenusSetInstruction" ng-model="menudetail.MenuInstruction" placeholder="菜品介绍">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="MenusSetNone" class="col-sm-3 control-label">售完</label>
+										<div class="col-sm-8 check">
+											<div class="col-sm-6">
+												<input name="MenusSetNone" type="radio" ng-value="1"  ng-model="menudetail.SaleState"> 是
+											</div>
+											<div class="col-sm-6">
+												<input name="MenusSetNone" type="radio" ng-value="0" ng-model="menudetail.SaleState"> 否
+											</div>
+										</div>
+									 </div>
+								</form>
+							</div>
+							
+							<div class="tab-pane" id="modalMenusSetPic">
+								<div class="upLoad">
+									<i class="fa fa-fw fa-arrow-circle-o-up"></i>
+									<label>上传图片</label>
+									<input type="file" id="uploadimg" name="file"  accept="image/gif, image/jpeg, image/jpg, image/png">
+								</div>
+								<div class="alert alert-warning alert-dismissible" role="alert">
+								  建议上传分辨率不超过500*500的正方形图片喔
+								</div>
+							</div>
+							<div class="tab-pane" id="modalMenusSetTag">
+								<div class="left">
+									<div class="input-group">
+									  <input type="text" class="form-control" ng-model="tags" placeholder="输入 标签 ...">
+									  <span class="input-group-btn">
+										<button class="btn btn-default" type="button" ng-click="addtags(tags)">添加标签</button>
+									  </span>
+									</div><!-- /input-group -->
+								</div>
+								<div class="tags right">
+									<span class="label label-success" ng-repeat="x in menuTag track by $index">
+										<span class="name">{{x}}</span>
+										<button class="close" type="button" ng-click="delecttags($index)">×</button>
+									</span>									
+								</div>
+							</div>
+						  </div>
+				  </div>
+				  <div class="modal-footer">
+				  <button class="btn btn-warning btn-lg mdeletebtn" ng-show="editflag"ng-click="mdelete(menudetail)" >删除</button>
+				  <button class="btn btn-warning btn-lg msavebtn" ng-show="editflag" ng-click="medit(menudetail)">保存</button>
+				   <button class="btn btn-warning btn-lg mcreatbtn" ng-click="mcreat(menudetail,cid)" ng-show="!editflag">创建</button>
+				  </div>
+				</div>
+			  </div>
+	</div>
+		<!--菜品设置、添加菜品分类、编辑菜品分类-->
+			<div id="modalMenusClassify" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			  <div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">{{menuTitle}}</h4>
+				  </div>
+				  <div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group row">
+							<label for="MenusClassName" class="col-sm-3 control-label">菜品分类名称</label>
+							<div class="col-sm-8">
+							  <input class="form-control" id="MenusClassName"  ng-model="classify.ClassifyTag" placeholder="菜品分类名称">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="MenusClassInstruction" class="col-sm-3 control-label">分类介绍</label>
+							<div class="col-sm-8">
+							  <input class="form-control" id="MenusClassName" ng-model="classify.ClassifyInstruction" placeholder="分类介绍">
+							</div>
+						</div>
+						<div class="form-group row" id="menuorder">
+							<label for="MenusClassOrder" class="col-sm-3 control-label">排列顺序</label>
+							<div class="col-sm-8">
+							  <input class="form-control" id="MenusClassOrder" ng-model="classify.ClassifyNo" placeholder="排列顺序">
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="MenusClassNone" class="col-sm-3 control-label">隐藏分类</label>
+							<div class="col-sm-8 check">
+								<div>
+									<input name="MenusClassNone" type="checkbox" id="ClassNone" ng-checked="classify.ClassifyNet==0?false:true"  ng-true-value="1" ng-false-value="0" ng-model="classify.ClassifyNet"> 隐藏分类（网上点单客户无法使用）
+								</div>
+								
+							</div>
+						 </div>
+					</form>						
+						 
+				  </div>
+				  <div class="modal-footer">
+				  <button class="btn btn-warning btn-lg  deletebtn" ng-click="deleteclass(classify)" >删除</button>
+				  <button class="btn btn-warning btn-lg savebtn" ng-click="savemenuclass(classify)">保存</button>
+				   <button class="btn btn-warning btn-lg creatbtn" ng-click="creatmenuclass()">创建</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+
+</div>

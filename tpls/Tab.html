@@ -1,0 +1,123 @@
+<!-- START THE NAVBAR -->
+<div class="navbar-wrapper hidden-xs">
+	<div class="container-fuild">
+		<div class="navwrapper">
+			<div class="container-fuild">
+				<div class="navbar  navbar-inverse navbar-static-top">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					  </button>
+						<a class="navbar-brand" href="">智慧餐厅管理系统</a>
+					</div>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-right navbar-ul">
+							<!--<li class="menuItem ">
+								<a href="#home">其他功能</a>
+							</li>
+							<li class="menuItem ">
+								<a href="#features">注册账号</a>
+							</li>
+							<li class="menuItem ">
+								<a href="#updates">联系客服</a>
+							</li>-->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Navbar -->
+	</div>
+</div>
+<!-- END NAVBAR -->
+<div id="content" class="container-fuild">
+	<div class="content-top">
+		<ul id="mainTab" class="nav nav-tabs">
+			<li>
+				<img class="navbar-brand" src="src/images/logo-01.png" />
+			</li>
+			<li ui-sref=".desk"  ng-class="{'active':Tab.indexOf('/tpls/desk')>=0,'':Tab.indexOf('/tpls/desk')==-1}">
+				<a href="#"   data-toggle="tab" title="餐桌">
+					<i class="fa fa-fw fa-archive"></i><span >餐桌</span>
+				</a>
+			</li>
+			<li  ui-sref=".orderBefore" ng-class="{'active':(Tab=='/tpls/orderBefore'||Tab=='/tpls/orderAfter')}">
+				<a href="#"  data-toggle="tab" title="点餐">
+					<i class="fa fa-fw fa-book"></i><span>点餐</span>
+				</a>
+			</li>
+			<li ui-sref=".account" ng-class="{'active':Tab=='/tpls/account','':Tab!='/tpls/account'}">
+				<a href="#"  data-toggle="tab" title="结账">
+					<i class="fa fa-fw fa-calculator"></i><span>结账</span>
+				</a>
+			</li>
+			<li ui-sref=".sale" ng-class="{'active':Tab=='/tpls/sale','':Tab!='/tpls/sale'}">
+				<a href="#"  data-toggle="tab" title="营收">
+					<i class="fa fa-fw fa-bar-chart"></i><span>营收</span>
+				</a>
+			</li>
+
+			<!--right menus-->
+			<div class="dropdown  right">
+				<!--主要菜单-->
+				<a href="" class="dropdown-toggle" data-toggle="dropdown">
+					<i class="glyphicon glyphicon-align-justify"></i><span class="caret">
+					  </span></a>
+				<ul class="dropdown-menu dropdown-menu-right">
+					<li>
+						<a href="" ui-sref=".sale.analysis">运行分析</a>
+					</li>
+					<li>
+						<a href="#setting/memberSetting" ui-sref=".setting.memberSetting">会员管理</a>
+					</li>
+					<!--<li>
+						<a href="">微信餐厅</a>
+					</li>-->
+					<li>
+						<a href="#setting/menusSetting" ui-sref=".setting.menusSetting">系统设置</a>
+					</li>
+					<!--<li>
+						<a href="">帮助中心</a>
+					</li>-->
+					<li>
+						<a href="" ui-sref="login">刷新系统</a>
+					</li>
+					<li >
+						<a href=""  ng-click="LoginOut()">退出系统</a>
+					</li>
+					<!--<li>
+						<a href="">体验餐厅</a>
+					</li>-->
+				</ul>
+			</div>
+			<!--<div class="right right-refresh">
+				<a href="">
+					<i class="glyphicon glyphicon-repeat"></i>-->
+					<!--刷新-->
+				<!--</a>
+			</div>
+			<div class="right right-toggle">
+				<a href="">
+					<i class="glyphicon glyphicon-bell"></i>-->
+					<!--事件闹铃-->
+					<!--<span class="label label-warning">10</span>-->
+				<!--</a>
+			</div>
+			<div class="right right-toggle">
+				<a href="">
+					<i class="glyphicon glyphicon-gift"></i>-->
+					<!--礼物-->
+				<!--</a>
+			</div>-->
+		</ul>
+	</div>
+	<div class="tab-content content-middle bg" ui-view />
+</div>
+</div>
+<div class="myModal">
+	<desk-modal datamodal="transfer_desk" filter-model="filterModel" get-my-text="obj" desk-state="*"></desk-modal> 
+	<desk-modal datamodal="switch_desk" filter-model="filterModel" get-my-text="obj" desk-state="*"></desk-modal> 
+	<desk-modal datamodal="account_desk_modal" filter-model="filterModel" get-my-text="obj" desk-state="1"></desk-modal> 
+</div>

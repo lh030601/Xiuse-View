@@ -1,0 +1,46 @@
+	<div class="tab-pane bg active" id="setting">
+			<div class="wrapper">
+				<section id="sidebar">
+					<i id="toggle" title="返回首页" class="glyphicon glyphicon-home">
+							<p>首页</p>
+					</i>
+					<ul id="dock">
+						<li class="launcher" ui-sref=".memberSetting" >
+							<i class="fa fa-fw fa-group"></i>
+							<a href="#memberSetting" data-toggle="tab">会员管理</a>
+						</li>
+						<li class="launcher" ui-sref=".menusSetting">
+							<i class="glyphicon glyphicon-list-alt"></i>
+							<a href="#menusSetting" data-toggle="tab">菜单设置</a>
+						</li>
+						<li class="launcher" ui-sref=".discountSetting">
+							<i class="fa fa-fw fa-strikethrough"></i>
+							<a href="#discountSetting" data-toggle="tab">折扣设置</a>
+						</li>
+						<li class="launcher " ui-sref=".deskSetting">
+							<i class="glyphicon glyphicon-glass"></i>
+							<a href="#deskSetting" data-toggle="tab">餐桌设置</a>
+						</li>
+
+						<li class="launcher" ui-sref=".userSetting">
+							<i class="glyphicon glyphicon-user"></i>
+							<a href="#userSetting" data-toggle="tab">员工设置</a>
+						</li>
+						<li class="launcher" ui-sref=".PrintSetting">
+							<i class="glyphicon glyphicon-print"></i>
+							<a href="#PrintSetting" data-toggle="tab">打印设置</a>
+						</li>
+						<li class="launcher" ui-sref=".restaurantSetting">
+							<i class="glyphicon glyphicon-cutlery"></i>
+							<a href="#restaurantSetting" data-toggle="tab">餐厅设置</a>
+						</li>
+					</ul>
+					<div title="Made by lab2023" id="beaker" data-toggle="tooltip">	
+					</div>
+				</section>
+				<div  id="settingContent"class="tab-content">
+				<div class="ccc" ui-view>			
+				</div>	
+				</div>
+			</div>
+		</div>

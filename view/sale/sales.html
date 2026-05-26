@@ -1,0 +1,222 @@
+<div class="tab-pane bg active" id="sale">
+	<div class="bg">
+		<ul class="nav nav-tabs">
+			<li ui-sref="." class="active"><a href="\#day_turnover"  data-toggle="tab">当日营业额</a></li>
+			<li ui-sref="."><a href="\#day_dishes" data-toggle="tab">当日热门菜品</a></li>
+			<li ui-sref="."><a href="\#day_bill" data-toggle="tab">当日账单统计</a></li>
+			<li ui-sref="."><a href="\#turnover_count" data-toggle="tab">营业统计</a></li>
+			<li ui-sref="."><a href="\#takeaway_count" data-toggle="tab">外卖统计</a></li>
+			<li ui-sref=".analysis"><a  href="\#analysiss" data-toggle="tab">运营分析</a></li>
+		 </ul>
+		 <div class="tab-content">
+			<div class="tab-pane bg fade in active" id="day_turnover">
+				<div id="chartTest" >
+				</div>
+			</div>
+			<div class="tab-pane fade" id="day_dishes">
+				<div id="menusale" ></div>
+			</div>
+			<div class="tab-pane fade" id="day_bill">
+				<div class="title">
+					<div class="pull-left">
+						<span>今日营业额</span>
+					<span>{{totalAccount|currency : '￥'}}</span>
+			</div>
+			<div class="input-group pull-right">
+				<input type="text" class="form-control" ng-model="number" style="height:34px;" placeholder="账单号">
+				<span class="input-group-btn">
+						<button class="btn btn-info" type="button">搜索</button>
+					  </span>
+			</div>
+			<!-- /input-group -->
+		</div>
+		<div class="clearfix"></div>
+		<ul class="list bg-min">
+			<li class="heading">
+				<span class="dispear-min">餐桌</span>
+				<span class="billNo">账单号</span>
+				<span>时间</span>
+				<span>金额</span>
+				<span class="dispear-min">应付</span>
+				<span class="dispear-min">数量</span>
+				<span>退款</span>
+			</li>
+			<li class="today-list-item" ng-class="{'menucancel':x.allback}" ng-repeat="x in todaybills|filter:number|orderBy:['allback','OrderbeginTime','OrderId'] track by $index"  >
+				<span class="dispear-min" ng-click="chargeback(x)">{{x.DeskName}}</span>
+				<span class="billNo" ng-click="chargeback(x)">{{x.OrderId}}</span>
+				<span ng-click="chargeback(x)">{{x.OrderbeginTime|date:'HH:mm:ss'}}</span>
+				<span ng-click="chargeback(x)">{{x.BillAmount|currency : '￥'}}</span>
+				<span class="dispear-min" ng-click="chargeback(x)">{{x.AccountsPayable|currency : '￥'}}</span>
+				<span class="dispear-min" ng-click="chargeback(x)">{{x.DishCount}}</span>
+				<span ng-click="chargeback(x)">{{x.Refunds|currency : '￥'}}</span>
+				<span><button class="btn btn-danger dispear-min" data-target="" ng-show="!x.allback" ng-click="chargeback(x)">退单</button>
+					<button class="btn btn-warning dispear-min" data-target=""  ng-click="printset()">打印</button>
+				</span>
+			</li>		
+		</ul>
+	</div>
+	<div class="tab-pane fade" id="turnover_count">
+		<div class="input-group" style="width:300px; height:40px;">
+			<span class="input-group-addon">开始时间</span>
+			<input class="form-control" style="height:40px;" type="text" name="datetimepicker" id="turnover_begin" ng-model="turnovertime.begin" />
+		</div>
+		<div class="input-group" style="width:300px; height:40px;">
+			<span class="input-group-addon">结束时间</span>
+			<input class="form-control" style="height:40px;" type="text"  name="datetimepicker" id="turnover_end" ng-model="turnovertime.end" />
+		</div>
+		<div class="alert alert-warning alert-dismissible fade in">
+			<button aria-label="Close" data-dismiss="alert" class="close" type="button">
+							<span aria-hidden="true">×</span>
+						</button>
+			<strong>{{turnovertips}}</strong>
+		</div>
+		<div class="btn-group btn-group-lg" role="group" aria-label="...">
+			<button type="button" class="btn btn-info" ng-click="downloadturnover(turnovertime)">
+					<i class="glyphicon glyphicon-floppy-save"></i>下载数据
+				  </button>
+			<button type="button" class="btn btn-info" ng-click="turnoveremail(turnovertime)">
+					<i class="glyphicon glyphicon-envelope" ></i>发送邮件
+				  </button>
+		</div>
+
+	</div>
+	<div class="tab-pane fade" id="takeaway_count">
+		<div class="input-group" style="width:300px; height:40px;">
+			<span class="input-group-addon">开始时间</span>
+			<input class="form-control"  style="height:40px;" type="text" name="datetimepicker" id="turnover_begin1" />
+		</div>
+		<div class="input-group" style="width:300px; height:40px;">
+			<span class="input-group-addon">结束时间</span>
+			<input class="form-control" style="height:40px;" type="text" value="2016-05-15 21:05" name="datetimepicker" id="turnover_end1" />
+		</div>
+		<div class="alert alert-warning alert-dismissible fade in">
+			<button aria-label="Close" data-dismiss="alert" class="close" type="button">
+							<span aria-hidden="true">×</span>
+						</button>
+			<strong>可以发送邮件!</strong>
+		</div>
+		<div class="btn-group btn-group-lg" role="group" aria-label="...">
+			<button type="button" class="btn btn-info">
+					<i class="glyphicon glyphicon-floppy-save"></i>下载数据
+				  </button>
+			<button type="button" class="btn btn-info">
+					<i class="glyphicon glyphicon-envelope"></i>发送邮件
+				  </button>
+		</div>
+	</div>
+	<div class="tab-pane fade" id="analysiss">
+		<div ui-view></div>	
+	</div>
+</div>
+</div>
+</div>
+<div class="myModal">
+<div id="modalChargeBack" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			  <div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">{{desktitle}}</h4>
+				  </div>
+				  <div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group billsmessage">
+							<div>
+							<span><label  class="control-label">餐桌名称:</label>{{Bills.DeskName}}</span>
+							<span><label  class="control-label">下单时间:</label>{{Bills.OrderbeginTime|date:'HH:mm:ss'}}</span>
+							</div>
+							<div>
+							<span><label  class="control-label">折扣:</label>{{Bills.Refunds|currency : '￥'}}</span>
+							<span><label  class="control-label">支付方式:</label>{{Bills.DeskName}}</span>
+							</div>
+							<div>
+							<span><label  class="control-label">应付金额:</label>{{Bills.AccountsPayable|currency : '￥'}}</span>
+							<span><label  class="control-label">退款金额:</label>{{Bills.Refunds|currency : '￥'}}</span>
+							<span><label  class="control-label">账单金额:</label>{{Bills.BillAmount|currency : '￥'}}</span>
+						   </div>
+						</div>
+						<div class="form-group row">
+						<span  class="col-sm-6">	
+					   <button class="btn billbtn btn-warning" ng-click="printset()">打印</button> </span>
+					    <span  class="col-sm-6">	
+						<button class="btn billbtn btn-danger" ng-show="!Bills.allback" ng-click="mbackbtn()">退单</button>
+						<span class="backmessage1" ng-show="Bills.allback">此单全部菜品已退!</span>
+						</span>
+						</div>
+					<div class="billinfo">
+				    <div class="billtitle">餐品数量：{{Bills.DishCount}}</div>
+				    <div class="billdetail">
+				  	<div class="billsdetail" ng-repeat="x in orderm|orderBy:'menuback'" ng-class="{'menucancel':x.menuback}">
+				  			<span class="mname">{{x.MenuName}}
+				  			<span class="menucheck" ng-show="!x.menuback&&menuch">
+				  				<input type="checkbox"  name="{{x.MenuName}}" ng-click="chmored(x)"/>
+				  			</span>
+				  			<span class="backmessage" ng-show="x.menuback">已退菜</span>
+				  			</span>
+				  			<span class="minfo">
+				  			<span class="mprice">{{x.MenuPrice|currency : '￥'}}</span>
+				  			<span class="mnum"><i class="fa fa-close"></i>{{x.MenuNum}}
+				  				<span  ng-show="x.mored">退</span>
+				  				<span ng-show="x.mored" class="numbtn">
+				  					<div class="input-group" data-spinner="spinner">
+									<div class="input-group-btn">
+										<button class="btn btn-sm btn-danger" name="{{x.MenuName}}mbtn" ng-click="PMinus(x)" type="button">								
+																<i class="fa fa-minus"></i></button>
+									</div>
+									<input readonly="true" name="spinner" type="text" class="form-control ng-pristine ng-valid" ng-model="x.dNum">
+									<div class="input-group-btn">
+										<button class="btn btn-sm btn-success" name="{{x.MenuName}}pbtn" ng-click="PPlus(x)" type="button">								
+										<i class="fa fa-plus"></i>					
+									</button>
+									</div>
+								</div>
+				  				</span>
+				  				<span  ng-show="x.mored">份</span>
+				  			</span>
+				  			</span>
+				  	</div>
+				  </div>
+				  <div class="billfooter" ng-show="!x.menuback&&menuch"><span class="checkall"><input type="checkbox" name="chooseall" ng-click="chall()"  /></span>全选</div>
+				  </div>
+					</form>
+				  </div>
+				  <div class="modal-footer">
+				  	<div ng-show="!x.menuback&&menuch">
+				  		<div class="backreason">
+				  		<label  class="control-label">请填写退单原因：</label>
+				  		<span><input type="radio" ng-model="breason" ng-value="0" ng-change="choreason(breason)">售罄</span>
+				  		<span><input type="radio" ng-model="breason" ng-value="1" ng-change="choreason(breason)">误点</span>
+				  		<span><input type="radio" ng-model="breason" ng-value="{{reason}}" ng-change="choreason(breason)">其他<input class="cannot" placeholder="其他原因" type="text" name="otherreason" ng-model="reason" readonly="true"></span>
+				  		</div>
+				  		<div class="row">
+				  		<span  class="col-sm-6">	
+				  		<button class="btn billsbtn btn-default" ng-click="clearback()">取消退单</button> </span>
+				  		<span  class="col-sm-6">	
+				  		<button class="btn billsbtn btn-warning" ng-click="saveback(orderm)">确认退单</button> </span>
+				  		</div>
+				  	</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+<div id="modalPrintSet" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			  <div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">选择要打印的账单类型</h4>
+				  </div>
+				  <div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group printstyle">
+							<span ng-repeat="x in ptype" name="{{x.name}}" ng-class="{'printchecked':x.type}" ng-click="changecheck(x.name)"><label>{{x.name}}</label></span>
+						</div>
+					</form>
+				  </div>
+				  <div class="modal-footer">
+				  	<button class="btn billsbtn btn-warning" ng-click="">打印</button> </span>
+				  </div>
+				</div>
+			  </div>
+			</div>
+</div>

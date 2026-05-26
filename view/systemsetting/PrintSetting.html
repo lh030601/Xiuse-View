@@ -1,0 +1,204 @@
+<div class="tab-pane bg " id="PrintSetting">
+	<section class="tools">
+		<ul class="breadcrumb">
+			<li class="title">餐厅设置</li>
+			<li class="active">
+				<a href="">打印设置</a>
+			</li>
+		</ul>
+	</section>
+	<div class="content">
+		<ul class="nav  nav-dill nav-dill-3">
+			<li class="active">
+				<a href="/#basicInformation" data-toggle="tab">基本信息</a>
+			</li>
+			<li>
+				<a href="/#printTabs" data-toggle="tab">打印标签</a>
+			</li>
+			<li ng-show="printtype">
+				<a href="/#cloudPrintset" data-toggle="tab">云端打印机设置</a>
+			</li>
+		</ul>
+	</div>
+	<div class="tab-content">
+		<div class="tab-pane active" id="basicInformation">
+			<form class="form-horizontal">
+				<div class="aform">
+				<div class="heading">
+					使用收据打印需要首先在内网安装打印程序
+				</div>
+				<div class="form-group">
+					<div class="choose">
+						<input type="radio" name="chrome" ng-value="0" ng-model="printtype">
+						<label>使用Chrome插件或安卓本地打印</label>
+						<label class="tips">（适合用于单台台式机与安卓平板上）</label>
+						<ul class="downloadchoose">
+							<li>
+								<a>下载Chrome打印插件 (只适用于Chrome浏览器）</a>
+							</li>
+						</ul>
+					</div>
+					<div class="choose">
+						<input type="radio" name="cloud" ng-value="1" ng-model="printtype">
+						<label>使用云打印服务</label>
+						<label class="tips">（适合用于多台设备，利用网络通过一台PC作打印终端）</label>
+						<ul class="downloadchoose">
+							<li>
+								<a>下载云打印程序（Windows 32位）</a>
+							</li>
+							<li>
+								<a>下载云打印程序（Windows 64位）</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				</div>
+				<div class="aform">
+				<div class="heading">
+					请勾选需要自动打印的单据种类
+				</div>
+				<div class="form-group">
+					<div class="choose">
+						<ul class="toprint"> 
+							<li>
+								<input type="checkbox" ng-value="0" ><label>收账单</label><label>(顾客结账后所生成单据)</label>
+							</li>
+							<li>
+								<input type="checkbox" ng-value="1"><label>对账单</label><label>(顾客点单后所生成单据)</label>
+							</li>
+							<li>
+								<input type="checkbox" ng-value="2"><label>出品单</label><label>(厨房所收到菜品制作单)</label>
+							</li>
+							<li>
+								<input type="checkbox" ng-value="3"><label>退品单</label><label>(厨房所收到菜品退菜单)</label>
+							</li>
+							<li>
+								<input type="checkbox" ng-value="4"><label>传菜单</label><label>(厨房或者传菜部餐品总单)</label>
+							</li>
+							<li>
+								<input type="checkbox" ng-value="5"><label>标签单</label><label>(贴于茶杯或饭盒上的标签)</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+				</div>
+			</form>
+			<button class="btn btn-primary btn-lg saveprintbtn" >保存</button>
+		</div>
+		<div class="tab-pane" id="printTabs">
+			<div class="nullinfo hidden">
+				<p>设置打印标签可以帮助您的打印机分辨和打印不同单据（如：设置水吧打印机只打印酒水）。
+					该功能需要在POS设置里添加标签及标签内餐品，在打印机里添加同样标签即可。</p>
+				<img src="src/images/111.png"/>
+			<button class="btn btn-primary btn-lg addtabs" >添加标签</button>
+			</div>
+			<div class="printtabinfo">
+				<div>
+				<button class="btn btn-success addtabsbtn" name="tabs">
+					<i class="fa fa-fw fa-plus-square"></i>添加标签
+				</button>
+				</div>
+				<div class="moretabs">
+				<div class="tabs">
+					<img src="src/images/print.png"/>
+					<div><p>标签1标签1标签1标签1标签1标签1</p></div>
+				</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="cloudPrintset" ng-show="printtype">
+			<div class="row">
+	<div class="col-sm-4 printlist">
+		<label class="printlistlabel">打印机列表</label>
+		<select class="printlistselect" ng-model="chooseprint" ng-change="choprint(chooseprint)">
+			<option value="0" >请选择打印机</option>
+			<option value="22" >22</option>
+			<option value="33" >33</option>
+		</select>
+	</div>
+	<div class="col-sm-8">
+		<div class="printset">
+			<label class="printsettitle">{{printsettitle}}</label>
+			<span>
+			<label>选择打印机种类</label>
+			<input type="radio" ng-value="0" ng-model="toprint"/><label class="toprint">小票打印机</label>
+		    <input type="radio" ng-value="1" ng-model="toprint"/><label class="toprint">标签打印机</label>
+			</span>
+			<span>
+			<label>打印机名称</label>
+			<input type="text" placeholder="设置打印机名称"/>
+			</span>
+			<span>
+			<label>打印机宽度</label>
+			<input type="text" placeholder="设置打印机宽度(例如：58mm打印机宽度为32)"/>
+			</span>
+			<span>
+			<label>IP</label>
+			<input type="text" placeholder="设置打印机IP"/>
+			</span>
+		</div>
+		<div class="receiptprint">
+			<ul class="toprint"> 
+							<li>
+								<input type="checkbox" ng-value="0" ><label>对账单</label>
+							</li>
+							<li>
+								<input type="checkbox" ng-value="1"><label>收账单</label>
+							</li>
+							<li>
+								<input type="checkbox" ng-value="2"><label>出品单</label>
+							</li>
+							<li>
+								<input type="checkbox" ng-value="3"><label>退品单</label>
+							</li>
+							<li>
+								<input type="checkbox" ng-value="4"><label>传菜单</label>
+							</li>
+							<li>
+								<input type="checkbox" ng-value="5"><label>营业记录</label>
+							</li>
+							<li>
+								<input type="checkbox" ng-value="5"><label>其他</label>
+							</li>
+						</ul>
+		</div>
+		<div class="tagprint">
+		<div class="input-group">
+			<input type="text" class="form-control tag-input" >
+			<span class="input-group-btn">
+                <button class="btn btn-default add-printertag" type="button">添加标签</button>
+		    </span>
+		</div>
+		<div class="creattabs">
+			<ul class="tags-printer list-inline">
+				<li class="label label-warning">
+					<label>ddddddddddddd</label>
+				</li>
+				<li class="label label-danger">
+					<label>adfadsfadsfads</label>
+				</li>
+				<li class="label label-info">
+					<label>什么鬼</label>
+				</li>
+				<li class="label label-primary">
+					<label>大法大多数非</label>
+				</li>
+				<li class="label label-success">
+					<label>大法等等多多多多多多多多</label>
+				</li>
+				<li class="label label-default">
+					<label>ddddddddddddd</label>
+				</li>
+			</ul>
+			
+		</div>	
+		</div>
+		<div class="printlistbtn">
+			<button class="btn btn-lg btn-warning" ng-show="!chooseprint">添加</button>
+			<button class="btn btn-lg btn-primary" ng-show="chooseprint">修改</button>
+			<button class="btn btn-lg btn-danger" ng-show="chooseprint">删除</button>
+		</div>
+	</div>
+		</div>
+
+	</div>

@@ -1,0 +1,758 @@
+#account_desk{
+	width:350px;
+	margin-left:4px;
+}
+
+#account_list{
+	display:inline-block;
+	position:absolute;
+	top:0px;
+	right:0px;
+	width:350px;
+	margin-right:4px;
+}
+
+#account_pay_type{
+	display:inline-block;
+	position:absolute;
+	top:0px;
+	left:360px;
+	right:360px;
+}
+#account .account-top{
+	background:#0C111C;
+	height:40px;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	margin-left:4px;
+	margin-right:4px;
+}
+
+#account .account-top div{
+	display:inline-block;
+	width:32%;
+	text-align:center;
+	height:100%
+	padding:auto 10%;
+}
+#account_desk{
+	font-size:15px;
+	color:#272F3D;
+}
+#account_desk .remark{
+	text-align:center;
+	height:40px;
+	line-height:40px;
+	border-bottom: 1px solid #ddd;
+	width:100%;
+	background:#F4F2F3;
+	cursor:pointer;
+}
+#account_desk .opreate{
+	border-bottom: 1px solid #ddd;
+}
+#account_desk .opreate span:first-child{
+	border-right: 1px solid #ddd;
+}
+#account_desk .opreate span{
+	display:inline-block;
+	width:48%;
+	text-align:center;
+	height:40px;
+	line-height:40px;
+	cursor:pointer;
+}
+#account_desk  .ordered{
+	text-align:center;
+	height:40px;
+	line-height:40px;
+	color:#a1adb7;
+	border-bottom: 1px solid #D4D0C8;
+	border-top: 1px solid #D4D0C8;
+	background:#DEDEDE;
+}
+#account_desk .list{
+	position:absolute;
+	top:165px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	overflow:auto;
+}
+#account_desk .list li{
+	border-bottom: 1px solid #ddd;
+	
+	height:50px;
+	line-height:50px;
+	margin:0px 10px;
+	cursor:pointer;
+}
+#account_desk .list li:hover{
+	margin-left:0px;
+	border-left: 10px solid #ddd;
+}
+
+#account_desk .list li div{
+	display:inline-block;
+	font-size:15px;
+	font-weight:700;
+}
+#account_desk .list li div.name{
+	width:46%;
+}
+del {
+    text-decoration: line-through;
+}
+
+#account_desk .list li.ds_disable div.discount{
+	display: none;
+}
+#account_desk .list li.ds_disable div.name{
+	width:58%;
+}
+#account_desk .list li div.discount{
+	width:10%;
+	color:#DDBB00;
+}
+
+#account_desk .list li div.discount>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+        position: relative;
+    padding: 10px 5px;
+}
+
+
+#account_desk .list li div.discount>a>i {
+	font-size: 25px;
+	color: #a1adb7;
+}
+#account_desk .list li div.active>a>i {
+	color: #DDBB00;
+}
+#account_desk .list li div.discount>a>i:hover {
+	color:#DDBB00;
+}
+#account_desk .list li div.discount>a>.label {
+    position: absolute;
+    top: 30px;
+    right: 2px;
+    text-align: center;
+    font-size: 5px;
+    padding: 2px 3px;
+    line-height: .9;
+}
+#account_desk .list li div.price{
+	width:36%;
+	font-family: arial;
+	line-height: 1;
+	color:#a1adb7;
+	font-size:15px;
+	font-weight:700;
+	padding: 10px 5px;
+}
+#account_desk .list li div.price .label{
+	display: none;
+}
+#account_desk .list li div.price-ds {
+	 color: #e01222;
+    font-family: arial;
+    line-height: 1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: relative;
+    padding: 10px 5px;
+}
+#account_desk .list li div.price-ds .label {
+    position: absolute;
+    top: 30px;
+    left: 2px;
+    text-align: center;
+    color: #a1adb7;
+    font-size: 5px;
+    padding: 2px 3px;
+    line-height: .9;
+}
+
+#account_list .cash-out{
+	text-align:center;
+}
+#account_list {
+	background:#27303F;
+	box-shadow:1px 1px  5px 1px #000 ;
+	border:1px  solid #000;
+	border-radius:5px;
+}
+#account_list .cash-out>span{
+	font-size:20px;
+	width:85%;
+	height:50px;
+	line-height:35px;
+	margin-top:10px;
+	box-shadow:0px 0px  5px 0px yellow;
+}
+#account_list .cash-out>span.btn-warning.disabled{
+	opacity:0.2;
+	box-shadow:none;
+	cursor:default;
+}
+#account_list .hidden-xs>span{
+	width:95%;
+}
+#account_list .cash-out button{
+	width:15%;
+	height:50px;
+	margin-top:10px;
+	font-size:28px;
+	box-shadow:0px 0px  5px 0px yellow;
+}
+#account_list .cash-out button>span{
+	
+}
+
+#account_list .disable>span{
+	color: #fff;
+    background-color: #808080;
+    border-color: #000;
+	opacity: 0.2;
+	cursor:not-allowed;
+}
+#account_list .keyboard{
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	right:0px;
+}
+.keyboard{
+	box-shadow:  1px 1px 2px 2px #000, 0 0 4px rgba(0, 0, 0, 0.5);
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+}
+ .calc td {
+	font-size:30px;
+	font-weight:600px;
+	height:50px;
+    padding: 0;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.4);
+    background: #313131;
+    background-clip: padding-box !important;
+    border: 0;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 3px;
+    cursor: pointer;
+    background-image: -webkit-linear-gradient(top, #313131, #1c1c1c);
+    background-image: -moz-linear-gradient(top, #313131, #1c1c1c);
+    background-image: -o-linear-gradient(top, #313131, #1c1c1c);
+    background-image: linear-gradient(to bottom, #313131, #1c1c1c);
+    -webkit-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 1px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 1px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+.calc {
+    margin: 0px;
+    padding: 15px;
+    background: #3d4543;
+    border: 1px solid #222;
+    border-radius: 4px;
+    background-image: -webkit-linear-gradient(top, #3d4543, #2f2a2f);
+    background-image: -moz-linear-gradient(top, #3d4543, #2f2a2f);
+    background-image: -o-linear-gradient(top, #3d4543, #2f2a2f);
+    background-image: linear-gradient(to bottom, #3d4543, #2f2a2f);
+    -webkit-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 4px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 4px rgba(0, 0, 0, 0.5);
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+.calc-display {
+    margin: 0;
+    padding: 3px;
+	width:100%;
+    background: #222;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+.calc-display-input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 0 8px;
+    font: 26px/35px UbuntuMono, monospace;
+    color: #444;
+    text-align: right;
+    background: #bccd95;
+    background-clip: padding-box;
+    border: 1px solid #222;
+    border-radius: 2px;
+    background-image: -webkit-linear-gradient(top, #bccd95, #e0f5b1);
+    background-image: -moz-linear-gradient(top, #bccd95, #e0f5b1);
+    background-image: -o-linear-gradient(top, #bccd95, #e0f5b1);
+    background-image: linear-gradient(to bottom, #bccd95, #e0f5b1);
+    -webkit-box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.12);
+	
+}
+ .keyboard td:active {
+	background:#0E90D2;
+	box-shadow:1px 1px  1px 2px #282828 ;	
+}
+#account_list .cash-list{
+	position:absolute;
+	overflow:auto;
+	top:65px;
+	left:0px;
+	right:0px;
+	bottom:247px;
+}
+#account_list .cash-list bill{
+	margin:5px 20px;
+	color:#EAEBF0;
+	font-size:18px;
+	display:block;
+}
+#account_list .cash-list .call-bill{
+	border-bottom:1px dashed #606E88;
+}
+
+#account_list .cash-list bill span{
+	display:inline-block;
+	width:49%;
+}
+#account_list .cash-list bill span+span{
+	text-align:right;
+}
+#account_pay_type{
+	background:#232C3A;
+	border:1px  solid #000;
+	border-radius:5px;
+	box-shadow:1px 1px  5px 1px #000 ;
+	min-width:300px;
+}
+#account_pay_type .pay_bottom{
+	position:absolute;
+	height:280px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	background:#27303F;
+	overflow:auto;
+}
+#account_pay_type .pay_bottom payType{
+	display:block;
+	background:#1E2530;
+	margin:5px 10px;
+	border-radius:30px;
+	height:45px;
+}
+
+#account_pay_type .pay_bottom payType div{
+	display:inline-block;
+	width:45%;
+	line-height:45px;
+}
+#account_pay_type .pay_bottom payType div.title{
+	margin-left:10px;
+}
+#account_pay_type .pay_bottom payType div+div{
+	text-align:right;
+}
+
+#account_pay_type .pay_bottom payType div span.tag{
+	display:inline-block;
+	font-size:25px;
+	color:#5DB7E9;
+}
+#account_pay_type .pay_bottom payType div span.state{
+	opacity:0.1;
+	font-size:28px;
+	
+}
+#account_pay_type .pay_bottom payType:hover{
+	cursor:pointer;
+	background:#337AB7;
+	color:#fff;
+
+}
+
+#account_pay_type .pay_bottom payType.active{
+	background:#337AB7;
+	color:#fff;
+}
+#account_pay_type .pay_bottom payType.active div span.tag{
+	color:#fff;
+}
+#account_pay_type .pay_bottom payType.enabled div span.state{
+	opacity:0.7;
+	color:#4FAC41;
+}
+#account_pay_type .pay_bottom payType.active div span.state{
+	opacity:1.0;
+	color:#4FAC41;
+}
+#account_pay_type .pay_top{
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:280px;
+	overflow:auto;
+}
+#account_pay_type .pay_top ul{
+	margin-top:10px;
+	max-width:500px;
+	margin:10px auto;
+	border-radius: 5px;
+	padding-bottom:5px;
+	padding-top:5px;
+}
+#account_pay_type .pay_top ul li{
+	box-shadow: 0px 0px 2px 1px #0080FF;
+	margin-bottom:10px;
+	margin-left:5px;
+	margin-right:5px;
+	border-radius: 2px;
+}
+.PayTable{
+	margin-top: 10px;margin-bottom: 10px;
+	border-style: solid; border-width: 2px;
+	border-color:#D7FFFF;
+	color: #a1adb7;
+	box-shadow: -2px 1px 2px #888888;
+	    text-shadow: 0px 1px 1px #a1adb7;
+}
+.PayTable span{
+	margin-right: 10px;
+}
+.PayTableSpan{
+	color: #555555;
+	box-shadow: 0px 0px 5px #245269;
+	text-shadow: 0px 1px 1px #a1adb7;
+	filter:alpha(opacity=90);
+	-moz-opacity:0.9;
+	-khtml-opacity:0.9;
+	opacity:0.9;
+}
+.PayTableSpan1{
+	color: #555555;
+	text-shadow: 0px 1px 1px #a1adb7;
+	
+}
+///##############################
+
+
+.info-box {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin-bottom: 15px;
+    min-height: 90px;
+    width: 80%;
+}
+.info-box-btn{
+    border-radius: 0px 0px 0px 0px;
+    display: block;
+    float: right;
+    font-size: 35px;
+    height: 90px;
+    line-height: 90px;
+    text-align: center;
+    width: 45px;
+	cursor:pointer;
+}
+.info-box-btn:hover {
+	background: rgba(0, 0, 0, 0.2) none repeat scroll 0 0;
+	color:#993366;
+}
+.info-box-icon {
+    background: rgba(0, 0, 0, 0.2) none repeat scroll 0 0;
+    border-radius: 2px 0 0 2px;
+    display: block;
+    float: left;
+    font-size: 60px;
+    height: 90px;
+    line-height: 90px;
+    text-align: center;
+    width: 90px;
+}
+.info-box-content {
+    padding: 5px 10px;
+	display:inline-block;
+	text-align:left;
+	width:50%;
+}
+.info-box-text {
+    text-transform: uppercase;
+}
+.info-box-number {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+}
+.info-box .progress, .info-box .progress .progress-bar {
+    //border-radius: 0;
+}
+.info-box .progress {
+    background: rgba(0, 0, 0, 0.2) none repeat scroll 0 0;
+    height: 2px;
+    margin: 5px -10px;
+}
+.bg-yellow, .callout.callout-warning, .alert-warning, .label-waring, .modal-warning .modal-body {
+    background-color: #f39c12 !important;
+}
+.bg-red, .bg-yellow, .bg-aqua, .bg-blue, .bg-light-blue, .bg-green, .bg-navy, .bg-teal, .bg-olive, .bg-lime, .bg-orange, .bg-fuchsia, .bg-purple, .bg-maroon, .bg-black, .bg-red-active, .bg-yellow-active, .bg-aqua-active, .bg-blue-active, .bg-light-blue-active, .bg-green-active, .bg-navy-active, .bg-teal-active, .bg-olive-active, .bg-lime-active, .bg-orange-active, .bg-fuchsia-active, .bg-purple-active, .bg-maroon-active, .bg-black-active, .callout.callout-danger, .callout.callout-warning, .callout.callout-info, .callout.callout-success, .alert-success, .alert-danger, .alert-error, .alert-warning, .alert-info, .label-danger, .label-info, .label-waring, .label-primary, .label-success, .modal-primary .modal-body, .modal-primary .modal-header, .modal-primary .modal-footer, .modal-warning .modal-body, .modal-warning .modal-header, .modal-warning .modal-footer, .modal-info .modal-body, .modal-info .modal-header, .modal-info .modal-footer, .modal-success .modal-body, .modal-success .modal-header, .modal-success .modal-footer, .modal-danger .modal-body, .modal-danger .modal-header, .modal-danger .modal-footer {
+    color: #fff !important;
+}
+.bg-green, .callout.callout-success, .alert-success, .label-success, .modal-success .modal-body {
+    background-color: #00a65a !important;
+}
+.bg-red, .callout.callout-danger, .alert-danger, .alert-error, .label-danger, .modal-danger .modal-body {
+    background-color: #dd4b39 !important;
+}
+.progress-description, .info-box-text {
+    display: block;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.progress, .progress > .progress-bar {
+    box-shadow: none;
+}
+.progress-description, .info-box-text {
+    display: block;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body {
+    background-color: #00c0ef !important;
+}
+.small-box {
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+}
+.small-box > .inner {
+    padding: 10px;
+}
+.small-box h3 {
+    font-size: 38px;
+    font-weight: bold;
+    margin: 0 0 10px;
+    padding: 0;
+    white-space: nowrap;
+}
+.small-box p {
+    font-size: 15px;
+}
+.small-box .icon {
+    color: rgba(0, 0, 0, 0.15);
+    font-size: 90px;
+    position: absolute;
+    right: 10px;
+    top: -10px;
+    transition: all 0.3s linear 0s;
+    z-index: 0;
+}
+
+.small-box > .small-box-footer {
+    background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    padding: 3px 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    z-index: 10;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Source Sans Pro",sans-serif;
+}
+///##############################
+#printType span{
+	width:150px;
+	height:50px;
+	line-height:50px;
+	opacity:0.5;
+	
+}
+#printType span{
+	margin-bottom:10px;
+}
+#printType span.active{
+	opacity:1;
+	background: rgba(0, 0, 0, 0.4) none repeat scroll 0 0;
+}
+#printType span:hover{
+	opacity:1;
+}
+#addRemark .modal-body textarea{
+	width:100%;
+	margin: 5px auto;
+	text-align:left;
+}
+/*下单开始*/
+#account_desk .panel>.panel-heading>.panel-title+.panel-title{
+	cursor:pointer;
+}
+#account_pay_type .add_discount{
+	background: rgba(0, 0, 0, 0.2) none repeat scroll 0 0;
+	cursor:pointer;
+	font-size:20px;
+	height:60px;
+	text-align:center;
+	line-height:50px;
+	color:#ddd;
+	margin:10px 10px;
+	border-radius:5px;
+	box-shadow:0px 0px 1px 1px #000;
+	
+}
+#account_pay_type .add_discount span{
+	font-size:60px;
+}
+
+#percent div{
+	display:inline-block;
+	background:#42B2F2;
+	border-radius:5px;
+	width:45%;
+	min-width:250px;
+	margin-left:5px;
+	margin-top:10px;
+	cursor:pointer;
+	border:1px solid #AEAEAE;
+	box-shadow:0px 0px 1px 1px #AEAEAE;
+}
+#percent div:hover{
+	display:inline-block;
+	background:#3A6EA5;
+	
+}
+#percent div span{
+	background:inherit;
+	width:45%;
+	display:inline-block;
+	margin:0px;
+	border-radius:5px;
+	color:#fff;
+}
+#percent div span[name='percent']{
+	text-align:right;
+	
+}
+#wipe button.btn-block,
+#tip button.btn-block{
+	margin-top:10px;
+}
+@media (max-width: 767px) { 
+	#account_desk,
+	#account_pay_type,
+	#account_list{
+		display:none;
+	}
+	#account_desk.active,
+	#account_pay_type.active,
+	#account_list.active{
+		display:block;
+		position:absolute;
+		width:auto;
+		bottom:0px;
+		left:0px;
+		right:0px;
+		margin:0px;
+		border-radius:0px;
+		border-bottom-left-radius:5px;
+		border-bottom-right-radius:5px;
+	}
+	
+	#account_desk.active .panel,
+	#account_desk.active .panel-heading{
+		border-radius:0px;
+		margin-top:0px;
+		border:none;
+		
+	}
+	#account_desk.active .panel{
+		margin-top:-1px;
+		border-bottom-left-radius:5px;
+		border-bottom-right-radius:5px;
+	}
+	#account  div.bg-min{
+		height: auto;
+	}
+
+	
+	#account .tab-content{
+		position:absolute;
+		top:50px;
+		left:4px;
+		right:4px;
+		bottom:0px;	
+	}
+	#account_pay_type .add_discount{
+		font-size:16px;
+		height:30px;
+		line-height:25px;
+	}
+	#account_pay_type .add_discount span{
+		font-size:30px;
+		
+	}
+	#account_pay_type .pay_top ul li {
+		margin-bottom:5px;
+	}
+	.info-box {
+		min-height: 45px;
+		width: 100%;
+	}
+	.info-box-btn{
+	  
+		font-size: 40px;
+		height: 45px;
+		line-height: 49px;
+		width: 45px;
+		cursor:pointer;
+	}
+	.info-box-icon {
+		font-size: 30px;
+		height: 45px;
+		line-height: 45px;
+		width: 45px;
+	}
+	.info-box-content {
+	   
+		padding: 5px 10px;
+		display:inline-block;
+		width:50%;
+	}
+	.info-box-text {
+		text-transform: uppercase;
+	}
+	.info-box-number {
+		display: block;
+		font-size: 10px;
+		font-weight: bold;
+	}
+	.info-box .progress, .info-box .progress .progress-bar {
+		//border-radius: 0;
+	}
+	.info-box .progress { 
+	}
+}
+
+.btn-bill:hover{
+	color:#008200;
+}

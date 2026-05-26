@@ -1,0 +1,11 @@
+<div data-value="{{taste}}"> 
+<button class="taste btn mydow" data-toggle='tooltip' style="color:green" data-container="body" data-toggle="popover" data-placement="auto" 
+	ng-click="tip($event)">{{taste}}</button>
+<div class="popover fade in bottom" ng-blur="onFoucsOut()" name="taste_div">
+      <div class="arrow"></div>
+      <div class="popover-content">
+      	<a type="button" style="display: block; float: left;" data-taste="taste" class="label {{x.Class}}" ng-repeat="x in ct" 
+      		ng-click="SetTaste(x.Name,$event)">{{x.Name}}</a>
+      </div>
+ </div>
+</div>

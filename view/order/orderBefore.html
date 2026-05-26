@@ -1,0 +1,152 @@
+<div class="bg" id="order">
+	<div class="container-fuild bg">
+		<div id="order-before" class="row bg ">
+			<div id="order-diner" class="order-diner  col-sm-6 col-md-4 bg">
+				<div class="panel panel-primary bg">
+					<div class="panel-heading">
+						<label class="panel-title">
+											<i class="glyphicon glyphicon-flag"></i>
+											<span name="currentNum"  class="desk-name" data-id='{{CurrentDeskid}}' >{{CurrentDeskName}}</span>
+										</label>
+						<label class="panel-title pull-right" name="transfer-desk" ng-click="modalDesks()">
+											<span><i class="glyphicon glyphicon-transfer" ></i>切换</span>
+										</label>
+					</div>
+					<div class="panel-body">
+						<div class="diner-num">
+							<label>
+												<i class="glyphicon glyphicon-user"></i>
+												<span>用餐人数</span>				
+											</label>
+
+							<div class="pull-right" style="width: 110px;">
+								<div class="input-group" data-spinner="spinner">
+									<div class="input-group-btn">
+										<button class="btn btn-sm btn-danger" ng-click="PMinus(personNum)" type="button">								
+															<i class="fa fa-minus"></i>							
+														</button>
+									</div>
+									<input name="spinner" type="text" class="form-control" value="1" maxlength="3" ng-model="personNum"/>
+									<div class="input-group-btn">
+										<button class="btn btn-sm btn-success" ng-click="PPlus(personNum)" type="button">								
+															<i class="fa fa-plus"></i>							
+														</button>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="diner-menus">
+							<ul>
+								<li ng-repeat="item in STMenus">
+									<div name="{{item.MenuId}}">
+										<div class="col-xs-6">
+											<div>
+												<menu-name class="pull-left">{{item.MenuName}}</menu-name>
+												<menu-taste menu-id="{{item.MenuId}}"></menu-taste>
+											</div>
+											<div class="pull-left">
+												<span>￥</span>
+												<span class="price" data-price="a1">{{item.MenuPrice}}</span>
+											</div>
+											<div class="pull-right">
+												<span class="num" data-opreate="a1">{{item.MenuNo}}</span>
+												<span>份</span>
+											</div>
+										</div>
+										<div class="btn-group col-xs-6">
+											<button name="minus"  ng-click="Minus(item.MenuId)" class="btn btn-default" title="减除">
+																<i class="glyphicon glyphicon-minus"></i>
+															 </button>
+											<button name="plus" ng-click="Plus(item.MenuId)" class="btn btn-default" title="添加">
+																<i class="glyphicon glyphicon-plus"></i>
+															 </button>
+											<button name="trash" ng-click="DelMenu(item.MenuId)" class="btn btn-danger" title="删除">
+																<i class="glyphicon glyphicon-trash"></i>
+															 </button>
+										</div>
+									</div>
+								</li>
+							</ul>
+
+						</div>
+
+					</div>
+					<div class="panel-footer text-center">
+						<div class="order-info">
+							<span>已点餐品</span>
+							<span class="label label-info">{{diner_num}}</span>
+							<i></i>
+							<span>账单金额￥：</span>
+							<span  class="label label-warning">{{diner_price}}</span>
+						</div>
+						<button type="button" name="order-btn" class="btn btn-warning hidden-xs" style="width:100%" ng-click="OrderBill(CurrentDeskId)">
+												下单
+										</button>
+						<div class="btn-group btn-group-justified visible-xs">
+							<button type="button" name="order-btn" class="btn btn-warning " style="width:80%" ng-click="OrderBill(CurrentDeskId)">
+												下单
+											</button>
+							<button type="button" name="order-btn-etc" class="btn btn-warning" style="width:40px;margin-left:-5px;" ng-click="ShowMenus()">
+												<i class="glyphicon glyphicon-chevron-right"></i>
+											</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div id="order-menus" class="order-menus hidden-xs col-sm-6 col-md-8  bg">
+				<div class="panel bg">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs">
+						<li role="presentation" class="active">
+							<a href="/#home" data-toggle="tab">全部</a>
+						</li>
+						<li role="presentation" ng-repeat="x in classify">
+							<a href="/#ClassIfy{{x.MenuClassifies.ClassifyId}}" data-toggle="tab" data-ng-bind="x.MenuClassifies.ClassifyTag"></a>
+						</li>
+					</ul>
+					<div class="input-group " style="padding-left:50%;">
+						<input type="text" class="form-control" style="height:34px;" placeholder="">
+						<span class="input-group-btn">
+										<button class="btn btn-default" type="button">搜索</button>
+									  </span>
+					</div>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div class="tab-pane fade in active" id="home">
+							<div class="menu-item btn btn-primary" ng-click="menuClick(i.MenuId)" data-id="{{i.MenuId}}" name="{{i.MenuId}}" ng-repeat="i in menusAll">
+								<div>
+									<span class="menu-item-num label label-success ">{{$index+1}}</span>
+									<span>￥</span>
+									<span class="menu-item-price" data-ng-bind="i.MenuPrice"></span>
+								</div>
+								<span class="menu-item-name" data-ng-bind="i.MenuName"></span>
+							</div>
+						</div>
+						<div class="tab-pane fade"  id="ClassIfy{{x.MenuClassifies.ClassifyId}}" ng-repeat="x in classify">
+							<div class="menu-item btn btn-primary" ng-click="menuClick(i.MenuId)" data-id="{{i.MenuId}}" name="{{i.MenuId}}" ng-repeat="i in x.LstMenuItems | orderBy:'MenuName'">
+								<div>
+									<span class="menu-item-num label label-success ">{{$index+1}}</span>
+									<span>￥</span>
+									<span class="menu-item-price" data-ng-bind="i.MenuPrice"></span>
+								</div>
+								<span class="menu-item-name" data-ng-bind="i.MenuName"></span>
+							</div>
+						</div>
+						<!--<div class="tab-pane fade" id="messages">3</div>
+						<div class="tab-pane fade" id="settings">
+
+						</div>-->
+					</div>
+					<div class="panel-footer text-center visible-xs">
+						<button type="button" name="go-order-btn" class="btn btn-warning " style="width:100%" ng-click="ShowOrder()">
+									<span>去下单￥</span>
+									<span name="order_diner_price" >{{diner_price}}</span>
+									</button>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>

@@ -1,0 +1,1009 @@
+<div id="analysis">
+	<div class="row">
+		<div class="col-sm-2 sidebar">
+			<div class="anatitle">餐厅运营数据分析</div>
+			<div class="ananav">
+				<ul class="nav nav-tabs maintab">
+					<li class="active" value="0">
+						<a href="\#oneday" data-toggle="tab" >最近<span class="small">1</span>天</a>
+					</li>
+					<li value="1">
+						<a href="\#sevendays" data-toggle="tab" >最近<span class="small">7</span>天</a>
+					</li>
+					<li value="2">
+						<a href="\#amonth" data-toggle="tab" >最近<span class="small">30</span>天</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-sm-10  tab-content">
+			<div class="tab-pane bg fade in active" id="oneday">
+				<div class="contitle row">
+					<div class="col-sm-4"><label class="datatime"> <span>{{todaydate|date:'yyyy年MM月dd日'}}&nbsp;{{week}}</span></label></div>
+					<div class="col-sm-4"><label class="stateicon" ng-class="setStyle1(todayAnalysis.MyTurnover.AddAccount,todayAnalysis.MyOrderDetail.AddOrder,todayAnalysis.MyChargeBack.BackOrderContrast)" data-toggle="tooltip" name="state"></label></div>
+					<div class="col-sm-4"><button class="download">下载营业记录</button></div>
+				</div>
+				<div class="contbody row">
+					<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12">
+							<div class="panel panel-info bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+								<i class="fa fa-calculator"></i>营业额
+						</label>
+								</div>
+								<div class="panel-body">
+									<div class="detail">
+										<span class="detailtitle">最近1天营业额</span>
+										<span class="detailbody"><i class="fa fa-rmb"></i>{{todayAnalysis.MyTurnover.Account| number:2}}</span>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<ul>
+										<li class="body">
+											<span class="detailtitle">较前一天<i class="fa fa-question-circle" data-toggle="tooltip"  name="yesterday"></i>
+													<span class="unit" ng-class="setStyle(todayAnalysis.MyTurnover.AddAccount)">
+													<span>{{whichstate(todayAnalysis.MyTurnover.AddAccount)}}</span>
+											</span>
+											<i class="fa" ng-class="setfaStyle(todayAnalysis.MyTurnover.AddAccount)"></i>
+											</span>
+											<span class="detailbody"><i class="fa fa-rmb"></i>{{todayAnalysis.MyTurnover.AddAccount}}</span>
+										</li>
+										<li class="bottom">
+											<span class="detailtitle">日均</span>
+											<span class="detailbody"><i class="fa fa-rmb"></i>{{todayAnalysis.MyTurnover.AvgAccount| number:2}}</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="panel panel-warning bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+										<i class="fa fa-heart"></i>最受欢迎的餐品
+									</label>
+								</div>
+								<div class="panel-body">
+									<div class="tdetail">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>餐品名称</th>
+													<th>数量(份)</th>
+													<th>占比</th>
+												</tr>
+											</thead>
+											<tbody ng-show="MyPopularMenuflag">
+												<tr ng-repeat="x in todayAnalysis.MyPopularMenu track by $index">
+													<td class="dname"><span>{{x.MenuName}}</span></td>
+													<td class="dnum"><span>{{x.MenuNum}}</span></td>
+													<td class="dpercent"><span>{{x.MenuProportion*100| number:0}}%</span></td>
+												</tr>
+											</tbody>
+										</table>
+										<p ng-show="!MyPopularMenuflag">目前无相应记录!</p>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<p>最近一天最受欢迎的餐品：</p>
+									<span class="fivedi" ng-repeat="x in todayAnalysis.MyPopularMenu track by $index">
+										{{x.MenuName}}
+								</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="panel panel-info bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+								<i class="fa fa-bookmark-o"></i>下单情况
+									</label>
+								</div>
+								<div class="panel-body">
+									<div class="detail">
+										<span class="detailtitle">最近一天下单数</span>
+										<span class="detailbody">{{todayAnalysis.MyOrderDetail.RecentlyOrder}}<span class="unit">个</sapn></span>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<ul>
+										<li class="body">
+											<span class="detailtitle">较前一天<i class="fa fa-question-circle" data-toggle="tooltip"  name="yesterday"></i>
+												<span class="unit" ng-class="setStyle(todayAnalysis.MyTurnover.AddAccount)">
+													<span>{{whichstate(todayAnalysis.MyOrderDetail.AddOrder)}}</span>
+											</span>
+											<i class="fa" ng-class="setfaStyle(todayAnalysis.MyTurnover.AddAccount)"></i>
+											</span>
+											<span class="detailbody">{{todayAnalysis.MyOrderDetail.AddOrder}}<span class="unit">个</span>
+											</span>
+										</li>
+										<li class="body">
+											<span class="detailtitle">平均每日下单</span>
+											<span class="detailbody">{{todayAnalysis.MyOrderDetail.AvgOrder| number:0}}<span class="unit">个</sapn></span>
+										</li>
+										<li class="body">
+											<span class="detailtitle">平均每单金额</span>
+											<span class="detailbody"><span class="unit"><i class="fa fa-rmb"></i></sapn>{{todayAnalysis.MyOrderDetail.AvgOrderAccount| number:2}}</span>
+										</li>
+										<li class="bottomy">
+											<span class="detailtitle">人均消费<i class="fa fa-question-circle" data-toggle="tooltip"  name="eachperson"></i></span>
+											<span class="detailbody"><span class="unit"><i class="fa fa-rmb"></i></sapn>{{todayAnalysis.MyOrderDetail.AvgPersonAccount| number:2}}</span>
+										</li>
+									</ul>
+
+								</div>
+							</div>
+							<div class="panel panel-danger bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+												<i class="fa fa-eraser"></i>退单原因
+									</label>
+								</div>
+								<div class="panel-body backbody">
+									<div id="Backchart"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="panel panel-info bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+												<i class="fa fa-cutlery"></i>下单高峰
+									</label>
+								</div>
+								<div class="panel-body">
+									<div class="tbdetail">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>高峰时段</th>
+													<th>平均下单数</th>
+													<th>较平均下单数</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="x in todayAnalysis.MyOrderTop track by $index">
+													<td class="dname"><span>{{x.BeginHour}}-{{x.EndHour}}</span></td>
+													<td class="dnum"><span>{{x.AvgOrderNum}}</span></td>
+													<td class="dpercent">
+														<span>{{x.TopAvg*100| number:0}}%</span>
+														<span><i class="fa" ng-class="setfaStyle1(x.TopAvg)"></i></span>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<p>最近一天平均每小时下单数是：<span>{{todayAnalysis.MyOrderTop[0].AvgOrder}}</span>个</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12">
+							<div class="panel panel-success bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+										<i class="fa fa-users"></i>会员消费统计
+									</label>
+								</div>
+								<div class="panel-body">
+									<div class="detail">
+										<span class="detailtitle">最近1天会员消费总金额</span>
+										<span class="detailbody"><i class="fa fa-rmb"></i>{{todayAnalysis.MyMemberOrder.MemberConsumption| number:2}}</span>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<ul>
+										<li class="body">
+											<span class="detailtitle">较前一天<i class="fa fa-question-circle" data-toggle="tooltip"  name="yesterday"></i>
+												<span class="unit" ng-class="setStyle(todayAnalysis.MyMemberOrder.MemberConsumptionContrast)">
+													<span>{{whichstate(todayAnalysis.MyMemberOrder.MemberConsumptionContrast)}}</span>
+											</span>
+											<i class="fa" ng-class="setfaStyle(todayAnalysis.MyMemberOrder.MemberConsumptionContrast)"></i>
+											</span>
+											<span class="detailbody"><i class="fa fa-rmb"></i>{{todayAnalysis.MyMemberOrder.MemberConsumptionContrast| number:2}}</span>
+										</li>
+										<li class="body">
+											<span class="detailtitle">会员消费占总营业额百分比</span>
+											<span class="detailbody">{{todayAnalysis.MyMemberOrder.MemberConsumptionTop*100| number:0}}<span class="unit">%</span></span>
+										</li>
+									</ul>
+								</div>
+								<div class="panel-body">
+									<div class="detail">
+										<span class="detailtitle">最近1天会员平均消费</span>
+										<span class="detailbody"><i class="fa fa-rmb"></i>{{todayAnalysis.MyMemberOrder.MemberConsumptionAvg| number:2}}</span>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<ul>
+										<li class="bottom">
+											<span class="detailtitle">较非会员平均消费
+												<span class="unit" ng-class="setStyle(todayAnalysis.MyMemberOrder.UnMemberConsumptionTop)">
+													<span>{{whichstate(todayAnalysis.MyMemberOrder.UnMemberConsumptionTop)}}</span>
+											</span>
+											<i class="fa" ng-class="setfaStyle(todayAnalysis.MyMemberOrder.UnMemberConsumptionTop)"></i></span>
+											<span class="detailbody">
+												<span class="unit"><i class="fa fa-rmb"></i></span> {{todayAnalysis.MyMemberOrder.UnMemberConsumptionTop| number:2}}
+											</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="panel panel-danger bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+												<i class="fa fa-paint-brush"></i>退单情况
+									</label>
+								</div>
+								<div class="panel-body">
+									<div class="detail">
+										<span class="detailtitle">最近1天退菜单数</span>
+										<span class="detailbody">{{todayAnalysis.MyChargeBack.BackOrderNum}}<span class="unit">份</span>
+										<span class="unit">共</span><i class="fa fa-rmb"></i>{{todayAnalysis.MyChargeBack.BackOrderAccount}}</span>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<ul>
+										<li class="bottom">
+											<span class="detailtitle">较前一天<i class="fa fa-question-circle" data-toggle="tooltip"  name="yesterday"></i>
+												<span class="unit" ng-class="setStyle(-todayAnalysis.MyChargeBack.BackOrderContrast)">
+													<span>{{whichstate(todayAnalysis.MyChargeBack.BackOrderContrast)}}</span>
+											</span>
+											<i class="fa" ng-class="setfaStyle(-todayAnalysis.MyChargeBack.BackOrderContrast)"></i></span>
+											</span>
+											<span class="detailbody">{{todayAnalysis.MyChargeBack.BackOrderContrast}}<span class="unit">份</span>
+											<span class="unit">共</span><i class="fa fa-rmb"></i>{{-todayAnalysis.MyChargeBack.BackOrderAccountContrast}}</span>
+										</li>
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="panel panel-success bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+										<i class="fa fa-money"></i>会员充值统计
+									</label>
+								</div>
+								<div class="panel-body">
+									<div class="detail">
+										<span class="detailtitle">最近1天充值总金额</span>
+										<span class="detailbody"><i class="fa fa-rmb"></i>{{todayAnalysis.MyRechareDetail.RechargeTotal| number:2}}</span>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<ul>
+										<li class="body">
+											<span class="detailtitle">较前一天<i class="fa fa-question-circle" data-toggle="tooltip"  name="yesterday"></i>
+												<span class="unit" ng-class="setStyle(todayAnalysis.MyRechareDetail.RechargeCompare)">
+													<span>{{whichstate(todayAnalysis.MyRechareDetail.RechargeCompare)}}</span>
+											</span>
+											<i class="fa" ng-class="setfaStyle(todayAnalysis.MyRechareDetail.RechargeCompare)"></i>
+											</span>
+											<span class="detailbody"><i class="fa fa-rmb"></i>{{todayAnalysis.MyRechareDetail.RechargeCompare| number:2}}</span>
+										</li>
+										<li class="bottom">
+											<span class="detailtitle">最近一天新增会员</span>
+											<span class="detailbody">{{todayAnalysis.MyRechareDetail.AddMemberNum}}<span class="unit">个</span></span>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="panel panel-warning bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+												<i class="fa fa-frown-o"></i>低销售量的餐品
+									</label>
+								</div>
+								<div class="panel-body">
+									<div class="tdetail">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>低销餐品名称</th>
+													<th>数量(份)</th>
+													<th>上次售出日期</th>
+												</tr>
+											</thead>
+											<tbody ng-show="MyPoorMenuflag">
+												<tr ng-repeat="x in todayAnalysis.MyPoorMenu track by $index">
+													<td class="dname"><span>{{x.MenuName}}</span></td>
+													<td class="dnum"><span>{{x.MenuNum}}</span></td>
+													<td class="dpercent"><span>{{x.MenuLastTime|date:'yy/MM/dd'}}</span></td>
+												</tr>
+											</tbody>
+										</table>
+										<p ng-show="!MyPoorMenuflag">目前无相应记录</p>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<p>最近一天最不受欢迎的餐品：</p>
+									<span class="fivedi" ng-repeat="x in todayAnalysis.MyPoorMenu track by $index">
+										{{x.MenuName}}
+								</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="panel panel-success bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+												<i class="fa fa-refresh"></i>翻台次数
+									</label>
+								</div>
+								<div class="panel-body">
+									<div class="tbdetail">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>时间段</th>
+													<th>翻台次数</th>
+													<th>平均用餐时间（分钟）</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="x in todaychtable track by $index">
+													<td class="dname">
+														<span>{{x.DinerType}}{{x.BeginTime}}~{{x.EndTime}}
+															<span  data-toggle="tooltip"  name="{{x.DinerType}}">
+																<i class="fa fa-question-circle"></i> <!--{{foodtques(x,"#oneday")}}-->
+														</span>
+														</span>
+													</td>
+													<td class="dnum"><span>{{x.RepeatNum}}</span></td>
+													<td class="dpercent"><span>{{x.DinnerTime}}</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<p>翻台次数：<span>表示餐桌重复使用次数，翻台次数越高就标明餐厅的餐桌使用频率越高，运营状况越好。</span></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="sevendays">
+				<div class="contitle row">
+					<div class="col-sm-4"><label class="datatime"><span> {{lastweekdate|date:'yyyy年MM月dd日'}}{{lastweek}}</span>至<span>{{todaydate|date:'yyyy年MM月dd日'}}{{week}}</span></label></div>
+					<div class="col-sm-4"><label class="stateicon" ng-class="setStyle1(sevendaysAnalysis.MyTurnover.AddAccount,sevendaysAnalysis.MyOrderDetail.AddOrder,sevendaysAnalysis.MyChargeBack.BackOrderContrast)" data-toggle="tooltip" name="state"></label></div>
+					<div class="col-sm-4"><button class="download">下载营业记录</button></div>
+				</div>
+				<div class="contbody row">
+					<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12">
+							<div class="panel panel-info bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+								<i class="fa fa-calculator"></i>营业额
+						</label>
+									<label class="panel-title pull-right detailcharts" name="seventurdetail">
+											<span>详情<i class="fa fa-bar-chart"></i></span>
+						</label>
+								</div>
+								<div class="panel-body">
+									<div class="detail">
+										<span class="detailtitle">最近七天营业额</span>
+										<span class="detailbody"><i class="fa fa-rmb"></i>{{sevendaysAnalysis.MyTurnover.Account| number:2}}</span>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<ul>
+										<li class="body">
+											<span class="detailtitle">较前七天<i class="fa fa-question-circle" data-toggle="tooltip"  name="yesterday"></i>
+													<span class="unit" ng-class="setStyle(sevendaysAnalysis.MyTurnover.AddAccount)">
+													<span>{{whichstate(sevendaysAnalysis.MyTurnover.AddAccount)}}</span>
+											</span>
+											<i class="fa" ng-class="setfaStyle(sevendaysAnalysis.MyTurnover.AddAccount)"></i>
+											</span>
+											<span class="detailbody"><i class="fa fa-rmb"></i>{{sevendaysAnalysis.MyTurnover.AddAccount| number:2}}</span>
+										</li>
+										<li class="bottom">
+											<span class="detailtitle">日均</span>
+											<span class="detailbody"><i class="fa fa-rmb"></i>{{sevendaysAnalysis.MyTurnover.AvgAccount| number:2}}</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="panel panel-warning bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+										<i class="fa fa-heart"></i>最受欢迎的餐品
+									</label>
+									<label class="panel-title pull-right detailcharts" name="sevenfavouritefooddetail">
+											<span>详情<i class="fa fa-table"></i></span>
+						</label>
+								</div>
+								<div class="panel-body">
+									<div class="tdetail">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>餐品名称</th>
+													<th>数量(份)</th>
+													<th>占比</th>
+												</tr>
+											</thead>
+											<tbody ng-show="sevenMyPopularMenuflag">
+												<tr ng-repeat="x in sevendaysAnalysis.MyPopularMenu track by $index">
+													<td class="dname"><span>{{x.MenuName}}</span></td>
+													<td class="dnum"><span>{{x.MenuNum}}</span></td>
+													<td class="dpercent"><span>{{x.MenuProportion*100| number:0}}%</span></td>
+												</tr>
+											</tbody>
+										</table>
+										<p ng-show="!sevenMyPopularMenuflag">目前无相应记录!</p>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<p>最近七天最受欢迎的餐品：</p>
+									<span class="fivedi" ng-repeat="x in sevendaysAnalysis.MyPopularMenu track by $index">
+										{{x.MenuName}}
+								</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="panel panel-info bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+								<i class="fa fa-bookmark-o"></i>下单情况
+									</label>
+									<label class="panel-title pull-right detailcharts" name="sevenorderdetail">
+											<span>详情<i class="fa fa-bar-chart"></i></span>
+						</label>
+								</div>
+								<div class="panel-body">
+									<div class="detail">
+										<span class="detailtitle">最近七天下单数</span>
+										<span class="detailbody">{{sevendaysAnalysis.MyOrderDetail.RecentlyOrder}}<span class="unit">个</sapn></span>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<ul>
+										<li class="body">
+											<span class="detailtitle">较前七天<i class="fa fa-question-circle" data-toggle="tooltip"  name="yesterday"></i>
+												<span class="unit" ng-class="setStyle(sevendaysAnalysis.MyTurnover.AddAccount)">
+													<span>{{whichstate(sevendaysAnalysis.MyOrderDetail.AddOrder)}}</span>
+											</span>
+											<i class="fa" ng-class="setfaStyle(sevendaysAnalysis.MyTurnover.AddAccount)"></i>
+											</span>
+											<span class="detailbody">{{sevendaysAnalysis.MyOrderDetail.AddOrder}}<span class="unit">个</span>
+											</span>
+										</li>
+										<li class="body">
+											<span class="detailtitle">平均每日下单</span>
+											<span class="detailbody">{{sevendaysAnalysis.MyOrderDetail.AvgOrder}}<span class="unit">个</sapn></span>
+										</li>
+										<li class="body">
+											<span class="detailtitle">平均每单金额</span>
+											<span class="detailbody"><span class="unit"><i class="fa fa-rmb"></i></sapn>{{sevendaysAnalysis.MyOrderDetail.AvgOrderAccount| number:2}}</span>
+										</li>
+										<li class="bottomy">
+											<span class="detailtitle">人均消费<i class="fa fa-question-circle" data-toggle="tooltip"  name="eachperson"></i></span>
+											<span class="detailbody"><span class="unit"><i class="fa fa-rmb"></i></sapn>{{sevendaysAnalysis.MyOrderDetail.AvgPersonAccount| number:2}}</span>
+										</li>
+									</ul>
+
+								</div>
+							</div>
+							<div class="panel panel-danger bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+												<i class="fa fa-eraser"></i>退单原因
+									</label>
+								</div>
+								<div class="panel-body backbody">
+									<div id="sevenBackchart"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="panel panel-info bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+												<i class="fa fa-cutlery"></i>下单高峰
+									</label>
+								</div>
+								<div class="panel-body">
+									<div class="tbdetail">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>高峰时段</th>
+													<th>平均下单数</th>
+													<th>较平均下单数</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="x in sevendaysAnalysis.MyOrderTop track by $index">
+													<td class="dname"><span>{{x.BeginHour}}-{{x.EndHour}}</span></td>
+													<td class="dnum"><span>{{x.AvgOrderNum}}</span></td>
+													<td class="dpercent">
+														<span>{{x.TopAvg*100| number:0}}%</span>
+														<span><i class="fa" ng-class="setfaStyle1(x.TopAvg)"></i></span>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<p>最近七天平均每小时下单数是：<span>{{sevendaysAnalysis.MyOrderTop[0].AvgOrder}}</span>个</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12">
+							<div class="panel panel-success bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+										<i class="fa fa-users"></i>会员消费统计
+									</label>
+									<label class="panel-title pull-right detailcharts" name="sevenmemberdetail">
+											<span>详情<i class="fa fa-table"></i></span>
+						</label>
+								</div>
+								<div class="panel-body">
+									<div class="detail">
+										<span class="detailtitle">最近七天会员消费总金额</span>
+										<span class="detailbody"><i class="fa fa-rmb"></i>{{sevendaysAnalysis.MyMemberOrder.MemberConsumption| number:2}}</span>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<ul>
+										<li class="body">
+											<span class="detailtitle">较前七天<i class="fa fa-question-circle" data-toggle="tooltip"  name="yesterday"></i>
+												<span class="unit" ng-class="setStyle(sevendaysAnalysis.MyMemberOrder.MemberConsumptionContrast)">
+													<span>{{whichstate(sevendaysAnalysis.MyMemberOrder.MemberConsumptionContrast)}}</span>
+											</span>
+											<i class="fa" ng-class="setfaStyle(sevendaysAnalysis.MyMemberOrder.MemberConsumptionContrast)"></i>
+											</span>
+											<span class="detailbody"><i class="fa fa-rmb"></i>{{sevendaysAnalysis.MyMemberOrder.MemberConsumptionContrast| number:2}}</span>
+										</li>
+										<li class="body">
+											<span class="detailtitle">会员消费占总营业额百分比</span>
+											<span class="detailbody">{{sevendaysAnalysis.MyMemberOrder.MemberConsumptionTop*100| number:0}}<span class="unit">%</span></span>
+										</li>
+									</ul>
+								</div>
+								<div class="panel-body">
+									<div class="detail">
+										<span class="detailtitle">最近七天会员平均消费</span>
+										<span class="detailbody"><i class="fa fa-rmb"></i>{{sevendaysAnalysis.MyMemberOrder.MemberConsumptionAvg| number:2}}</span>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<ul>
+										<li class="bottom">
+											<span class="detailtitle">较非会员平均消费
+												<span class="unit" ng-class="setStyle(sevendaysAnalysis.MyMemberOrder.UnMemberConsumptionTop)">
+													<span>{{whichstate(sevendaysAnalysis.MyMemberOrder.UnMemberConsumptionTop)}}</span>
+											</span>
+											<i class="fa" ng-class="setfaStyle(sevendaysAnalysis.MyMemberOrder.UnMemberConsumptionTop)"></i></span>
+											<span class="detailbody">
+												<span class="unit"><i class="fa fa-rmb"></i></span> {{sevendaysAnalysis.MyMemberOrder.UnMemberConsumptionTop| number:2}}
+											</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="panel panel-danger bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+												<i class="fa fa-paint-brush"></i>退单情况
+									</label>
+								</div>
+								<div class="panel-body">
+									<div class="detail">
+										<span class="detailtitle">最近七天退菜单数</span>
+										<span class="detailbody">{{sevendaysAnalysis.MyChargeBack.BackOrderNum}}<span class="unit">份</span>
+										<span class="unit">共</span><i class="fa fa-rmb"></i>{{sevendaysAnalysis.MyChargeBack.BackOrderAccount}}</span>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<ul>
+										<li class="bottom">
+											<span class="detailtitle">较前七天<i class="fa fa-question-circle" data-toggle="tooltip"  name="yesterday"></i>
+												<span class="unit" ng-class="setStyle(-sevendaysAnalysis.MyChargeBack.BackOrderContrast)">
+													<span>{{whichstate(sevendaysAnalysis.MyChargeBack.BackOrderContrast)}}</span>
+											</span>
+											<i class="fa" ng-class="setfaStyle(-sevendaysAnalysis.MyChargeBack.BackOrderContrast)"></i></span>
+											</span>
+											<span class="detailbody">{{sevendaysAnalysis.MyChargeBack.BackOrderContrast}}<span class="unit">份</span>
+											<span class="unit">共</span><i class="fa fa-rmb"></i>{{-sevendaysAnalysis.MyChargeBack.BackOrderAccountContrast| number:2}}</span>
+										</li>
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="panel panel-success bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+										<i class="fa fa-money"></i>会员充值统计
+									</label>
+								</div>
+								<div class="panel-body">
+									<div class="detail">
+										<span class="detailtitle">最近七天充值总金额</span>
+										<span class="detailbody"><i class="fa fa-rmb"></i>{{sevendaysAnalysis.MyRechareDetail.RechargeTotal| number:2}}</span>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<ul>
+										<li class="body">
+											<span class="detailtitle">较前七天<i class="fa fa-question-circle" data-toggle="tooltip"  name="yesterday"></i>
+												<span class="unit" ng-class="setStyle(sevendaysAnalysis.MyRechareDetail.RechargeCompare)">
+													<span>{{whichstate(sevendaysAnalysis.MyRechareDetail.RechargeCompare)}}</span>
+											</span>
+											<i class="fa" ng-class="setfaStyle(sevendaysAnalysis.MyRechareDetail.RechargeCompare)"></i>
+											</span>
+											<span class="detailbody"><i class="fa fa-rmb"></i>{{sevendaysAnalysis.MyRechareDetail.RechargeCompare| number:2}}</span>
+										</li>
+										<li class="bottom">
+											<span class="detailtitle">最近七天新增会员</span>
+											<span class="detailbody">{{sevendaysAnalysis.MyRechareDetail.AddMemberNum}}<span class="unit">个</span></span>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="panel panel-warning bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+												<i class="fa fa-frown-o"></i>低销售量的餐品
+									</label>
+									<label class="panel-title pull-right detailcharts" name="sevenbadfooddetail">
+											<span>详情<i class="fa fa-table"></i></span>
+						</label>
+								</div>
+								<div class="panel-body">
+									<div class="tdetail">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>低销餐品名称</th>
+													<th>数量(份)</th>
+													<th>上次售出日期</th>
+												</tr>
+											</thead>
+											<tbody ng-show="sevenMyPoorMenuflag">
+												<tr ng-repeat="x in sevendaysAnalysis.MyPoorMenu track by $index">
+													<td class="dname"><span>{{x.MenuName}}</span></td>
+													<td class="dnum"><span>{{x.MenuNum}}</span></td>
+													<td class="dpercent"><span>{{x.MenuLastTime|date:'yy/MM/dd'}}</span></td>
+												</tr>
+											</tbody>
+										</table>
+										<p ng-show="!sevenMyPoorMenuflag">目前无相应记录</p>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<p>最近七天最不受欢迎的餐品：</p>
+									<span class="fivedi" ng-repeat="x in sevendaysAnalysis.MyPoorMenu track by $index">
+										{{x.MenuName}}
+								</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="panel panel-success bg">
+								<div class="panel-heading">
+									<label class="panel-title">
+												<i class="fa fa-refresh"></i>翻台次数
+									</label>
+								</div>
+								<div class="panel-body">
+									<div class="tbdetail">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>时间段</th>
+													<th>翻台次数</th>
+													<th>平均用餐时间（分钟）</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="x in sevenchtable track by $index">
+													<td class="dname">
+														<span>{{x.DinerType}}{{x.BeginTime}}~{{x.EndTime}}
+															<span  data-toggle="tooltip"  name="{{x.DinerType}}">
+																<i class="fa fa-question-circle"></i> <!--{{foodtques(x,"#sevendays")}}-->
+														</span>
+														</span>
+													</td>
+													<td class="dnum"><span>{{x.RepeatNum}}</span></td>
+													<td class="dpercent"><span>{{x.DinnerTime}}</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<p>翻台次数：<span>表示餐桌重复使用次数，翻台次数越高就标明餐厅的餐桌使用频率越高，运营状况越好。</span></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="tab-pane fade" id="amonth">
+				<div class="contitle row">
+					<div class="col-sm-4"> <label class="datatime"><span>2017年4月17日 星期一</span>至<span>2017年5月17日 星期三</span>	</label> </div>
+					<div class="col-sm-4"><label class="stateicon badstate"><span>餐厅运营:不佳</span></label></div>
+					<div class="col-sm-4"><button class="download">下载营业记录</button></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="myModal">
+	<div id="modalTimeSetting" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">{{timesettitle}}</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group row">
+							<label for="Startset" class="col-sm-3 control-label">开始时间</label>
+							<div class="col-sm-8 timedur">
+								<input type="text" class="timedet" ng-keyup="checkhours(Starttime.hours)" maxlength="2" ng-model="Starttime.hours" />
+								<span class="timeicon">:</span>
+								<input type="text" class="timedet" ng-keyup="checkminutes(Starttime.minutes)" name="sminutes" maxlength="2" ng-model="Starttime.minutes" />
+								<span ng-show="checkhours(Starttime.hours)||checkminutes(Starttime.minutes)" class="errormessage">请填写正确有效的时间</span>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="Endset" class="col-sm-3 control-label">结束时间</label>
+							<div class="col-sm-8 timedur">
+								<input type="text" class="timedet" ng-keyup="checkhours(Endtime.hours)" name="ehours" maxlength="2" ng-model="Endtime.hours" />
+								<span class="timeicon">:</span>
+								<input type="text" class="timedet" ng-keyup="checkminutes(Endtime.minutes)" name="dhours" maxlength="2" ng-model="Endtime.minutes" />
+								<span ng-show="checkhours(Endtime.hours)||checkminutes(Endtime.minutes)" class="errormessage">请填写正确有效的时间</span>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary btn-lg" id="savechtablebutton" ng-click="Savetime(Starttime,Endtime)">保存</button>
+					<button class="btn btn-warning btn-lg " data-dismiss="modal" aria-label="Close">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="modalDetailCharts" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">{{chartssettitle}}</h4>
+				</div>
+				<div class="modal-body">
+					<div class="navtab">
+						<ul class="nav nav-tabs">
+							<li class="active" name="seventab">
+								<a href="\#sevendaysCharts" data-toggle="tab">最近7天</a>
+							</li>
+							<li name="monthtab">
+								<a href="\#monthCharts" data-toggle="tab">最近30天</a>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div id="sevendaysCharts" class="tab-pane bg fade">
+						</div>
+						<div id="monthCharts" class="tab-pane bg fade"></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-warning btn-lg " data-dismiss="modal" aria-label="Close">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="modalDetailTables" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">{{tablessettitle}}</h4>
+				</div>
+				<div class="modal-body">
+					<div class="navtab">
+						<ul class="nav nav-tabs">
+							<li class="active" name="seventabletab" value="1">
+								<a href="\#sevendaysTables" data-toggle="tab">最近7天</a>
+							</li>
+							<li name="monthtabletab" value="0">
+								<a href="\#monthTables" data-toggle="tab">最近30天</a>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div id="sevendaysTables" class="tab-pane bg fade in active">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>餐品名称</th>
+										<th>数量(份)</th>
+										<th>数量占总销量比</th>
+										<th ng-show="popularflag">金额(￥)</th>
+										<th ng-show="popularflag">占总销售金额比</th>
+										<th ng-show="!popularflag">最近售出时间</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="x in lists|orderBy : 'MenuRanking'">
+										<td class="tablename"><span>{{x.MenuName}}</span></td>
+										<td>{{x.MenuNum}}</td>
+										<td>{{x.MenuProportion*100| number:2}}%</td>
+										<td ng-show="popularflag">{{x.MenuAcount}}</td>
+										<td ng-show="popularflag">{{x.MenuAcountProportion*100| number:2}}%</td>
+										<td ng-show="!popularflag">{{x.MenuLastTime|date:'yyyy年MM月dd日'}}</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td class="creattables" colspan="5">
+											<analysis-Table params-Detail="paramsdetail" page-url="pageurl" max-size="5" align="text-center" filter-model="filterModel" items-perpage="itemsperpage"></analysis-Table>
+										</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						<div id="monthTables" class="tab-pane bg fade">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>餐品名称</th>
+										<th>数量(份)</th>
+										<th>数量占总销量比</th>
+										<th ng-show="popularflag">金额(￥)</th>
+										<th ng-show="popularflag">占总销售金额比</th>
+										<th ng-show="!popularflag">最近售出时间</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="x in lists|orderBy : 'MenuRanking'">
+										<td class="tablename"><span>{{x.MenuName}}</span></td>
+										<td >{{x.MenuNum}}</td>
+										<td>{{x.MenuProportion*100| number:2}}%</td>
+										<td ng-show="popularflag">{{x.MenuAcount}}</td>
+										<td ng-show="popularflag">{{x.MenuAcountProportion*100| number:2}}%</td>
+										<td ng-show="!popularflag">{{x.MenuLastTime|date:'yyyy年MM月dd日'}}</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td class="creattables" colspan="5">
+											<analysis-Table params-Detail="paramsdetail" page-Url="pageurl" max-size="5" align="text-center" filter-model="filterModel" items-perpage="itemsperpage"></analysis-Table>
+										</td>
+									</tr>
+								</tfoot>
+								</table>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-warning btn-lg " data-dismiss="modal" aria-label="Close">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="modalmemberDetailTables" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">{{tablessettitle}}</h4>
+				</div>
+				<div class="modal-body">
+					<div class="navtab">
+						<ul class="nav nav-tabs">
+							<li class="active" name="memseventab" value="1">
+								<a href="\#membersevendaysTables" data-toggle="tab">最近7天</a>
+							</li>
+							<li name="memmonthtab" value="0">
+								<a href="\#membermonthTables" data-toggle="tab">最近30天</a>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div id="membersevendaysTables" class="tab-pane bg fade in active">
+							<div class="searchbtn">
+								<input type="text" placeholder="请输入会员名或会员卡号" ng-model="searchcondition"/>
+								<button title="查询" ng-click="Searchcondicton(searchcondition)"><i class="fa fa-search"></i></button>
+							</div>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>卡号</th>
+										<th>会员名</th>
+										<th>充值(￥)</th>
+										<th>消费(￥)</th>
+										<th>平均消费(￥)</th>
+										<th>余额(￥)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="x in lists" ng-show="ifnullflag" ng-click="memberdetail(x)">
+										<td class="memnumber"><span>{{x.MemberCardNo}}</span></td>
+										<td class="tablename"><span>{{x.MemberName}}</span></td>
+										<td>{{x.RechargeAmount}}</td>
+										<td>{{x.Memberconsumption}}</td>
+										<td>{{x.AvgMemberconsumption}}</td>
+										<td>{{x.MemberAmount}}</td>
+									</tr>
+									<tr ng-show="!ifnullflag">
+										<td class="tablelistnull" colspan="6">没有找到相应记录！</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td class="creattables" colspan="6">
+											<analysis-Table params-Detail="paramsdetail" page-url="pageurl" max-size="5" align="text-center" filter-model="filterModel" items-perpage="itemsperpage"></analysis-Table>
+										</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						<div id="membermonthTables" class="tab-pane bg fade">
+								<div class="searchbtn">
+								<input type="text" placeholder="请输入会员名或会员卡号" ng-model="searchcondition"/>
+								<button title="查询" ng-click="Searchcondicton(searchcondition)"><i class="fa fa-search"></i></button>
+							</div>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>卡号</th>
+										<th>会员名</th>
+										<th>充值(￥)</th>
+										<th>消费(￥)</th>
+										<th>平均消费(￥)</th>
+										<th>余额(￥)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="x in lists" ng-show="ifnullflag" ng-click="memberdetail(x)">
+										<td class="memnumber"><span>{{x.MemberCardNo}}</span></td>
+										<td class="tablename"><span>{{x.MemberName}}</span></td>
+										<td>{{x.RechargeAmount}}</td>
+										<td>{{x.Memberconsumption}}</td>
+										<td>{{x.AvgMemberconsumption}}</td>
+										<td>{{x.MemberAmount}}</td>
+									</tr>
+									<tr ng-show="!ifnullflag">
+										<td class="tablelistnull" colspan="6">没有找到相应记录！</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td class="creattables" colspan="6">
+											<analysis-Table params-Detail="paramsdetail" page-url="pageurl" max-size="5" align="text-center" filter-model="filterModel" items-perpage="itemsperpage"></analysis-Table>
+										</td>
+									</tr>
+								</tfoot>
+							</table>							
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-warning btn-lg " data-dismiss="modal" aria-label="Close">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

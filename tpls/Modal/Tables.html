@@ -1,0 +1,22 @@
+<div id="{{datamodal}}" class="modal fade  deskmodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title"  ng-if="CurrentDeskName!=null">选择餐桌（{{CurrentDeskName}}）</h4>
+							<h4 class="modal-title"  ng-if="CurrentDeskName==null">选择餐桌（未选择餐桌）</h4>
+						</div>
+						<div class="modal-body">
+							<span class="btn btn-default mydow" data-dismiss="modal" data-id="{{item.DeskId}}"
+								 ng-repeat="item in desks" ng-click="a(item.DeskId)">
+								 <div>{{item.DeskName}}</div>
+								 <div ng-if="item.DeskState==0">空桌</div>
+								 <div ng-if="item.DeskState==1">未支付</div>
+								 <div ng-if="item.DeskState==2">已支付</div>
+							</span>
+						</div>
+						<div class="modal-footer">
+						</div>
+					</div>
+				</div>
+			</div>

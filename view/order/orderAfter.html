@@ -1,0 +1,173 @@
+<div class="bg" id="order">
+	<div class="container-fuild bg">
+		<div id="order-after" class="row bg-min">
+			<div id="order-more" class="col-sm-5 col-md-4 bg-min">
+				<div class="panel panel-black bg-min">
+					<div class="panel-heading">
+						<label class="panel-title">
+											<i class="glyphicon glyphicon-flag"></i>
+											<span name="currentNum" class="desk-name" data-id="{{CurrentDeskid}}">{{CurrentDeskName}}</span>
+										</label>
+						<label class="panel-title pull-right" name="order-time">
+										{{OrderTime}}
+										</label>
+					</div>
+					<div class="panel-body">
+						<div class="order-opreate">
+							<div class="orderAndSwitch">
+								<div class="order" ng-click="NewOrder()">
+									<div>
+										<i class="fa fa-fw fa-book"></i>
+										<span>点餐</span>
+									</div>
+
+								</div>
+								<div class="switch" name="transfer-desk" ng-click="SwitchDesk()">
+									<div>
+										<i class="fa fa-fw fa-retweet"></i>
+										<span>转台</span>
+									</div>
+
+								</div>
+							</div>
+							<div class="clearAndList">
+								<div class="clear"  ng-click="ClearDesk(CurrentDeskid)">
+									<div>
+										<i class="fa fa-fw fa-paint-brush"></i>
+										<span>清台</span>
+									</div>
+
+								</div>
+								<div class="list" ng-click="GetDeskBil(CurrentDeskid)">
+									<div>
+										<i class="fa fa-fw fa-files-o"></i>
+										<span>账单</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="diner-num">
+							<label>
+												<i class="glyphicon glyphicon-user"></i>
+												<span>用餐人数</span>				
+											</label>
+
+							<div class="pull-right" style="width: 110px;">
+								<div class="input-group" data-spinner="spinner">
+									<div class="input-group-btn">
+										<button class="btn btn-sm btn-danger" data-target="minus" ng-click="PMinus(personNum)" type="button" disabled="disabled">								
+															<i class="fa fa-minus"></i>							
+														</button>
+									</div>
+									<input name="spinner" type="text" class="form-control" value="1" maxlength="3" ng-model="personNum" readonly="readonly"/>
+									<div class="input-group-btn">
+										<button class="btn btn-sm btn-success" data-target="plus" ng-click="PPlus(personNum)"  type="button" disabled="disabled">								
+															<i class="fa fa-plus"></i>							
+														</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="order-bills">
+							<div class="bills-status">
+								<div class="pull-left">
+									<i class="glyphicon glyphicon-time"></i>
+									<span>账单状态</span>
+								</div>
+
+								<div class="pull-right visible-xs text-center bill-down" ng-click="TogleBill()">
+									<span class="label label-info">{{billNum}}X账单</span>
+									<i class="fa fa-fw fa-angle-double-down"></i>
+								</div>
+							</div>
+							<div class="bills-list divDin" style="clear:both; top: 320px;" ng-show="billsListShow" data-id="currentOrderId">
+								<ul style="margin-top:10px">
+									<li ng-class="{true: 'active', false: ''}[x.Order.OrderId==currentOrderId]" ng-repeat="x in OrdersBill" ng-click="GetOrderDetail(x.Order.OrderId)">
+										<a href="" data-id="{{x.Order.OrderId}}" data-toggle="tab">
+											<i class="glyphicon glyphicon-flag"></i>
+											<span class="label label-default">&nbsp;{{$index+1}}&nbsp;</span>
+											<span class="time" ng-if="x.Order.OrderState==0">已确认({{x.Order.OrderbeginTime| date:'HH:mm'}})</span>
+											<span class="time" ng-if="x.Order.OrderState==1">已付款({{x.Order.OrderEndTime| date:'HH:mm'}})</span>
+											<span class="time" ng-if="x.Order.OrderState==2">已退单({{x.Order.OrderEndTime| date:'HH:mm'}})</span>
+										</a>
+										<button ng-if="x.Order.OrderState==0" class="btn btn-primary" data-pay="false" ng-click="AddOrderMenus(x.Order.OrderId)">添加菜品</button>
+									</li>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div id="order-detail" class="col-sm-7 col-md-8 bg-min">
+				<div class="detail-content bg-min">
+					<div class="tab-content bg-min" ng-show="!OrderBillsFlag">
+						<div id="detail_{{OrderDetail.Order.OrderId}}" class="tab-pane bg-min fade in active divDin">
+							<div class="detail-title">
+								<div class="pull-left">
+									<span>账单金额</span>
+									<span class="badge">￥</span>
+									<span class="price">{{OrderDetail.Order.BillAmount|number:2}}</span>
+								</div>
+								<div class="pull-right">
+									<button class="btn btn-info" data-add="false" ng-if="OrderDetail.Order.OrderState==0" ng-click="AddOrderMenus(OrderDetail.Order.OrderId)">
+														<i class="glyphicon glyphicon-plus"></i>
+														添加菜品
+													</button>
+									<button class="btn btn-warning" data-pay="false" ng-if="OrderDetail.Order.OrderState==0" ng-click="PayBill(OrderDetail.Order.OrderId)">
+														<i class="glyphicon glyphicon-list-alt"></i>
+														结账
+													</button>
+								</div>
+							</div>
+							<div class="detail-status" style="clear:both;">
+								<span>已点餐品</span><span class="label label-info">{{OrderDetail.Order.DishCount}}</span>
+								<span>未上餐品</span><span class="label label-warning">{{NoneSer}}</span>
+								<span>下单时间</span><span class="label label-success">{{OrderDetail.Order.OrderbeginTime| date:'HH:mm'}}</span>
+								<span class="hidden-xs txt">{{OrderDetail.Order.OrderId}}</span>
+							</div>
+							<div class="detail-bills divDin" style="clear:both; top: 90px;">
+								<div class="col-xs-6 col-md-4" ng-repeat="x in OrderDetail.Ordermenu">
+									<div  ng-class="{true: 'detail-item chargeback', false: 'detail-item'}[x.MenuServing==2]">
+										<div>
+											<span class="menusName">{{x.MenuName}}</span>
+											<span class="price">￥{{x.MenuPrice|number:2}}</span>
+											<span class="quantity">x {{x.MenuNum}}</span>
+											<label class="quantity" ng-if="x.MenuServing==2">(已退菜)</label>
+										</div>
+										<input type="checkbox" ng-if="x.MenuServing!=2" ng-model="x.MenuServing"  ng-checked="ConvertTrue(x.MenuServing)"  ng-true-value="1" ng-false-value="0" ng-change="UpdateMenuServing(x.OrderMenuId)"/>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+					<div id="today-list" class="bg-min" ng-show="OrderBillsFlag">
+						<ul class="bg-min">
+							<li class="heading">
+								<span>下单时间</span>
+								<span>账单</span>
+								<span class="dispear-min">应付</span>
+								<span class="dispear-min">数量</span>
+								<span>退款</span>
+							</li>
+							<li class="today-list-item" ng-if="OrderBills == null" style="text-align: center;font-size: 15px;background-color: #eeecef;margin-left: 10px">
+				                    		今日还没有任何账单
+				             </li>
+							<li  ng-class="{true: 'today-list-item', false: 'today-list-item cancel'}[x.OrderState==1]"   ng-repeat="x in OrderBills">
+								<span>{{x.OrderbeginTime | date:'HH:mm'}}</span>
+								<span>￥{{x.AccountsPayable}}</span>
+								<span class="dispear-min">￥{{x.AccountsPayable}}</span>
+								<span class="dispear-min">{{x.DishCount}}</span>
+								<span ng-if="x.OrderState == 2">￥{{(x.Cash+x.BankCard+x.WeiXin+x.Alipay)|number:2}}</span>
+								<span ng-if="x.OrderState != 2">￥0.00</span>
+								<button class="btn btn-danger"  ng-if="x.OrderState != 2" ng-click="Refund(x.OrderId)">退单</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

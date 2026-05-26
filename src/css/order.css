@@ -1,0 +1,566 @@
+.panel-body{
+	padding:0px;
+}
+.panel{
+	margin-bottom:0px;
+}
+.txt{
+	display: inline-grid;
+    width: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#content>.content-middle>#order>.container-fuild>.row,
+#content>.content-middle>#order>.container-fuild>.row>div{
+	padding:0px 2px;
+	margin:0px;
+}
+#order .form-control{
+	height:30px;
+	text-align:center;
+	font-size:18px;
+}
+.clear
+{clear:both;height:0;overflow:hidden;width:100%;margin:0;padding:0; }
+/*下单开始*/
+#order .order-diner>.panel>.panel-heading>.panel-title{
+	cursor:pointer;
+}
+#order .order-diner>.panel>.panel-heading>.panel-title>i{
+	color:#99CCFF;
+}
+#order .diner-num{
+	border-bottom: 1px solid #ddd;
+	background:#F4F2F3;
+	width:100%;
+	
+}
+
+.modal-header,
+ .modal-footer{
+	//border-bottom: 1px solid #F4F2F3;
+	background-color: #2c3e50;
+	color:#ddd;
+	//box-shadow: 1px 1px 5px #444;
+}
+
+ .deskmodal .modal-body>span{
+	width:90px;
+	height:80px;
+	margin-bottom:10px;
+	text-align:center;
+	margin-left:5px;
+	color:#006699;
+	background:#F4F2F3;
+	padding:0px;
+	font-weight:700;
+}
+  .deskmodal .modal-body>span div{
+	height:30px;
+	line-height:30px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	}
+
+#order .diner-num>label,
+#order-more .order-bills>.bills-status{
+	margin-left:15px;
+	font-size:16px;
+	font-weight:700;
+	color:#a1adb7;
+	height:40px;
+	line-height:45px;
+}
+#order .diner-num>label>i,
+#order-more .order-bills>.bills-status i{
+font-size:20px;
+}
+#order .diner-num>label>span,
+
+#order .diner-num>div{
+	display:inline;
+	margin-top:8px;
+	margin-right:5px;
+	
+}
+#order .diner-remark{
+	height:40px;
+	line-height:40px;
+	font-size:20px;
+	border-bottom: 1px solid #ddd;
+	width:100%;
+	background:#F4F2F3;
+}
+#order .diner-remark>div{
+	font-size:18px;
+	color:#999999;
+}
+
+
+#order .diner-menus>ul{
+	padding-left:7px;
+	padding-right:7px;
+}
+#order .diner-menus>ul>li{
+	background:#FFF;
+	height:60px;
+	border-bottom: 1px solid #ddd;
+	
+}
+
+#order-diner .panel-body{
+	position:absolute;
+	top:43px;
+	bottom:80px;
+	left:0px;
+	right:0px;
+	width:100%
+}
+#order-diner .diner-menus{
+	position:absolute;
+	top:48px;
+	width:100%;
+	bottom:1px;
+}
+#order-diner .diner-menus>ul{
+	height:100%;
+	overflow-y:auto;
+}
+#order .diner-menus>ul>li>div>div menu-name{
+	font-weight:600;
+	font-size:16px;
+	text-shadow:1px  2px 10px #FA9A00;
+	color:#272F3D;
+}
+#order .diner-menus>ul>li>div>div span.price{
+	margin-right:30px;
+	font-weight:600;
+}
+#order .diner-menus>ul>li>div>div span.num{
+	color:red;
+	font-weight:600;
+}
+#order .diner-menus>ul>li>div>.btn-group{
+	padding-top:13px;
+	padding-bottom:13px;
+	
+}
+
+#order-diner .panel-footer{
+	height:80px;
+	position:absolute;
+	width:100%;
+	bottom:1px;
+	left:opx;
+	right:0px;
+	font-size:16px;
+}
+#order .panel .panel-footer>.order-info{
+	margin-bottom:5px;
+	
+}
+#order .order-menus>div>ul{
+	background:#444444;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+}
+#order .order-menus>div>.nav-tabs{
+	border-bottom:none;
+}
+#order .order-menus>div>.nav-tabs > li> a{
+	color:#9d9d9d
+}
+#order .order-menus>div>.nav-tabs > li.active > a,
+#order .order-menus>div>.nav-tabs > li.active > a:focus,
+#order .order-menus>div>.nav-tabs > li.active > a:hover,
+#order .order-menus>div>.nav-tabs > li a:hover{
+	background:#272F3D;
+	border:1px solid #282828;
+	border-bottom:none;
+	color:#FFFEFE;
+    cursor: pointer;
+}
+#order .order-menus>.panel{
+	background:#272F3D;
+	border-radius:5px;
+	border:1px solid #444;
+}
+
+#order .order-menus .row{
+	color:#FFFEFE;
+	margin-top:10px;
+	padding-right:10px;
+	text-align:center;
+}
+#order .order-menus .menu-item{
+	//background-color: #3C5EA0;
+    //border-color: #313B49;
+	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
+    color: #FFFEFE;
+	margin-left:10px;
+	margin-top:10px;
+	width:150px;
+}
+#order .order-menus .menu-item:hover{
+	//background-color: blue;
+	//background-color: #3C5EA0;
+}
+
+#order .order-menus .tab-content>.tab-pane{
+	overflow-y:auto;
+}
+/*下单结束*/
+
+.list-menus>li{
+	background:#ddd repeat scroll 0 0;
+	border-radius:2px;
+	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
+}
+/*订单更多或者详细 开始*/
+#order-more{
+	//max-width:350px;
+}
+#order-more .order-opreate{
+	font-size: 16px;
+    color: #a1adb7;
+	font-weight:600;
+    background-color: rgba(0,0,0,.15);
+    border-top: 1px solid rgba(0,0,0,.2);
+    cursor: pointer;
+}
+#order-more .order-opreate i{
+	font-size: 25px;
+	color:#00C0EF;
+}
+#order-more .order-opreate>.orderAndSwitch,
+#order-more .order-opreate>.clearAndList{
+	border-bottom:1px solid rgba(0,0,0,.2);
+	text-align:center;
+	height:100px;
+	
+}
+#order-more .order-opreate>.orderAndSwitch>.order,
+#order-more .order-opreate>.orderAndSwitch>.switch,
+#order-more .order-opreate>.clearAndList>.clear,
+#order-more .order-opreate>.clearAndList>.list{
+	display:inline-table;
+	width:48%;
+}
+#order-more .order-opreate>.orderAndSwitch>.order>div,
+#order-more .order-opreate>.orderAndSwitch>.switch>div,
+#order-more .order-opreate>.clearAndList>.clear>div,
+#order-more .order-opreate>.clearAndList>.list>div{
+	margin-top:13px;
+	padding-top:10px;
+		
+}
+#order-more .order-opreate>.orderAndSwitch>.order>div,
+#order-more .order-opreate>.clearAndList>.clear>div{
+	border-right:1px solid rgba(0,0,0,.2);	
+}
+#order-more .order-opreate>.orderAndSwitch span,
+#order-more .order-opreate>.clearAndList span{
+	display:block;
+}
+#order-more .orderAndSwitch .disabled i,
+#order-more .orderAndSwitch .disabled span,
+#order-more  .clearAndList .disabled i,
+#order-more  .clearAndList .disabled span{
+	opacity:0.2;
+}
+#order-more .diner-num{
+	background:inherit;
+	border-bottom:1px dashed rgba(0,0,0,.2);
+}
+#order-more .order-bills ul{
+	overflow-y:auto;
+}
+#order-more .order-bills li{
+	margin:1px 15px;
+	padding:0px 0px;
+	font-size:15px;
+	height:45px;
+	//line-height:45px;
+}
+#order-more .order-bills li:after,
+#order-more .order-bills li:before{
+	content:"　";
+	clear:both;
+}
+#order-more .order-bills li>a{
+	display:block;
+	float:left;
+	height:43px;
+	line-height:43px;
+	margin-left:10px;
+	color: #a1adb7;
+	width:90%;
+}
+
+#order-more .order-bills li.active{
+	background:#2C3542;
+	border:1px solid #000;
+	border-radius:10px;
+	box-shadow: 0px 0px 3px 1px #282828;
+}
+
+#order-more .order-bills li.active>button[data-pay="false"]{
+	display:block;
+}
+#order-more .order-bills li.active>a{
+	color:#0E90D2;
+	width:auto;
+}
+#order-more .order-bills li .label{
+	background-color: #2C3542 !important;
+	border:1px solid #282828;
+}
+#order-more .order-bills li.active .label{
+	background-color: #3c8dbc !important;
+}
+#order-more .order-bills li>button{
+	float:right;
+	margin-top:10px;
+	height:25px;
+	padding:2px;
+	display:none;
+}
+#order-more .order-bills li>button,
+#order-more .order-bills li i+span{
+	margin-right:5px;
+}
+#order-detail .detail-content{
+	background:#fff;
+	border-radius:5px;
+}
+#order-detail .tab-pane .detail-title{
+	height:50px;
+	line-height:50px;
+	margin:0px 15px;
+	font-size:18px;
+	color:#444;
+	font-weight:600;
+}
+#order-detail .tab-content .active .detail-title button[data-pay="true"],
+#order-detail .tab-content .active .detail-title button[data-add="true"]{
+		display:none;
+	}
+#order-detail .tab-pane .detail-title span:first-child{
+	margin-right:20px;
+}
+#order-detail .tab-pane .detail-status{
+	padding:0px 10px;
+	line-height:40px;
+	background:#D3D5DC;
+	color:#a1adb7;
+	border-top:1px solid #D4D0C8;
+	border-bottom:1px solid #D4D0C8;
+}
+#order-detail .tab-pane .detail-status span.label{
+	margin-right:10px;
+}
+#order-detail .tab-pane .detail-bills{
+	overflow-y:auto;
+}
+#order-detail .tab-pane .detail-bills .detail-item{
+	margin:10px 10px;
+	border-bottom:1px solid #D3D5DC;
+}
+#order-detail .tab-pane .detail-bills .detail-item span:first-child{
+	display:block;
+	font-size:16px;
+	color:#444;
+	font-weight:600;
+}
+#order-detail .tab-pane .detail-bills .detail-item.chargeback span {
+	text-decoration: line-through;
+    color: red;
+    opacity: 0.7;
+}
+#order-detail .tab-pane .detail-bills .detail-item.chargeback label {
+	font-weight:600;
+    color: red;
+    opacity: 1;
+}
+
+#order-detail .tab-pane .detail-bills .detail-item input{
+	position:absolute;
+	right:10%;
+	top:5px;
+	height:40px;
+	line-height:40px;
+}
+#order-detail .tab-pane .detail-bills .detail-item.chargeback input{
+	position:absolute;
+	right:10%;
+	top:5px;
+	height:40px;
+	line-height:40px;
+	display:none;
+}
+#order-more .bill-down{
+	padding:0px 10px;
+}
+#order-more .bill-down>span{
+	font-size:14px;
+}
+#order-more .order-bills > .bills-status .bill-down>i{
+	font-size:30px;
+}
+#order-more .bill-down:hover,
+#order-more .order-bills > .bills-status >div.active{
+	cursor:pointer;
+	background:#293854 ;
+}
+/*今日账单*/
+#today-list>ul{
+	overflow-y:auto;
+}
+#today-list>ul span{
+	width:15%;
+	display:inline-table;
+	text-align:center;
+}
+#today-list>ul button{
+	width:10%;
+	padding-left:0px;
+	padding-right:0px;
+}
+#today-list>ul>li.today-list-item span{
+	border-right:1px solid #a1adb7;
+	color:#666699;
+	font-size:12px;
+}
+
+#today-list>ul>li{
+	margin:5px 15px;
+	padding:10px 10px;
+	height:50px;
+	line-height:30px;
+}
+#today-list>ul>li.heading{
+	margin-bottom:10px;
+	color:black;
+	font-size:600;
+	font-size:15px;
+}
+#today-list>ul>li.today-list-item{
+	border:1px solid #a1adb7;
+	border-radius:10px;
+	cursor:pointer;
+}
+#today-list>ul>li.cancel span{
+	text-decoration:line-through;
+	color:red;
+}
+#today-list>ul>li.cancel button{
+	display:none;
+}
+@media (max-width: 767px) { 
+	#order-more .order-opreate i{
+		font-size: 20px;
+	}
+	#order-more .order-opreate>.orderAndSwitch,
+	#order-more .order-opreate>.clearAndList{
+		display:inline-block;
+		width:48%;
+		height:auto;
+	}
+	#order-more .order-opreate>.orderAndSwitch>.order,
+	#order-more .order-opreate>.orderAndSwitch>.switch,
+	#order-more .order-opreate>.clearAndList>.clear,
+	#order-more .order-opreate>.clearAndList>.list{
+		display:inline;
+		//float:left;
+		width:490%;
+	}
+	#order-more .order-opreate>.orderAndSwitch>.order>div,
+	#order-more .order-opreate>.clearAndList>.list>div{
+		width:45%;
+		display:inline-table;	
+		padding:0px;
+		margin:10px 0px;
+	}
+	#order-more .order-opreate>.orderAndSwitch>.switch>div,
+	#order-more .order-opreate>.clearAndList>.clear>div{
+		width:40%;
+		display:inline-table;	
+		padding:0px;
+		margin:10px 0px;
+	}
+	#order-more .order-opreate>.orderAndSwitch,
+	#order-more .order-opreate>.clearAndList{
+		//display:inline-table;
+		
+	}
+	#order-more .order-opreate>.orderAndSwitch span,
+	#order-more .order-opreate>.clearAndList span{
+		display:inline-table;
+	}
+	#order-more .panel{
+		border-bottom-left-radius:0px;
+		border-bottom-right-radius:0px;
+	}
+	#order-detail .tab-pane .detail-title span:first-child{
+		display:none;
+	}
+	#order-detail .tab-pane .detail-title{
+		height:40px;
+		line-height:40px;
+		margin:0px 5px;
+		font-size:14px;
+		font-weight:600;
+	}
+	
+	#order-detail .detail-content{
+		border-top-left-radius:0px;
+		border-top-right-radius:0px;
+	}
+	#order-more .order-bills > .bills-list{
+		background:#293854 ;
+		//border-top:1px solid #2F5070;
+		//display:none;
+	}
+	#order  div.bg-min{
+		height: auto;
+		//position:relative;
+	}
+}
+@media (max-width: 400px) { 
+	#order-more .order-opreate i{
+		display:none;
+	}
+	
+	
+	#order-detail .detail-content{
+		border-top-left-radius:0px;
+		border-top-right-radius:0px;
+	}
+	#today-list>ul span.dispear-min{
+		display:none;
+	}
+	#today-list>ul span{
+		width:25%;
+	}
+	#today-list>ul button{
+		width:15%;
+	}
+}
+@media (min-width: 768px) {
+	#order .order-menus .panel-footer{
+		height:0px;
+	}
+}
+@media (max-width: 768px) { 
+#order .order-menus .panel-footer{
+	height:50px;
+	position:absolute;
+	width:100%;
+	bottom:1px;
+	font-size:16px;
+	background:#444;
+	border-top:none;
+}
+ }

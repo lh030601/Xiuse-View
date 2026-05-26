@@ -1,0 +1,59 @@
+#register{
+	background:url(../images/loginbg.jpg) no-repeat fixed;
+    padding: 0;
+    margin: 0;
+    background-origin:border-box;
+    //background-size: 100% 100%;
+    background-size: cover;   
+}
+.topbutton>.login{
+	float: right;
+}
+.registerbtn{
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	display: block;
+	width:250px;
+	height:35px;
+	text-align: center;
+	margin: 16px 40px;
+	color: ghostwhite;
+	font-size: 18px;	
+	background: #42B2F2;
+}
+input[name="registername"]{
+	width:250px;
+	height:35px;
+	border: 1px solid rgba(0,0,0,0.4);
+	background-color:seashell ;
+	border-radius: 5px;
+	text-align: center;
+	opacity:0.8;
+}
+input[name="registername"]:focus{
+	background-color:whitesmoke;
+	border:#008BFF;
+	border-radius: 5px;
+	opacity:0.8;
+}
+
+@media only screen and (max-width:700px) {
+	#register{
+		background-origin:border-box;
+    	background-size: cover;  
+    	background-attachment:fixed;
+		background-position:center; 
+	}
+.registerbtn{
+	width:80%;
+	max-width: 250px;
+	margin: 16px 10%;
+	font-size: 16px;	
+}
+input[name="registername"]{
+	width:80%;
+	max-width: 250px;
+	margin-left:10% ;
+}
+}

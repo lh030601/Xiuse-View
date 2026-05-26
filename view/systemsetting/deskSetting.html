@@ -1,0 +1,73 @@
+<div class="tab-pane bg " id="deskSetting">
+						<section class="tools">
+							<ul class="breadcrumb">
+								<li class="title">餐厅设置</li>
+								<li class="active"><a href="">餐桌设置</a></li>
+							</ul>
+							<div class="toolbar">
+								<div class="btn-group">
+									<a title="添加餐桌" ng-click="adddesk()" data-toggle="toolbar-tooltip" class="btn">
+										<i class="fa fa-fw fa-user-plus"></i>添加餐桌
+									</a>
+								</div>
+							</div>
+						</section>
+						<div class="deskSettingContent">
+							<div class="desk-content">
+								<div class="desk desk-null" ng-repeat="x in desks|orderBy:'-DeskTime' track by $index" ng-click="editdesk(x)">
+									<div class="null">
+										<div class="null-header">
+											<i class="glyphicon glyphicon-flag deskIcon"></i>
+											<div class="deskNum">{{$index+1}}</div>
+										</div>
+										<div class="null-content">
+											<div class="deskName">{{x.DeskName}}</div>
+											<div class="deskState" ng-show="!x.TakeOut">（不接受外卖）</div>
+											<div class="deskState" ng-show="x.TakeOut">（接受外卖）</div>
+										</div>
+									</div>
+								</div>
+								<div style="clear:both;"></div>
+							</div>
+						</div>
+					</div>
+<div class="myModal">
+<div id="modalDeskSetting" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			  <div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">{{desktitle}}</h4>
+				  </div>
+				  <div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group row">
+							<label for="DeskSetName" class="col-sm-3 control-label">餐桌名称</label>
+							<div class="col-sm-8">
+							  <input class="form-control" id="DeskSetName" placeholder="餐桌名称" ng-model="desk.DeskName">
+							</div>
+						 </div>
+						 <div class="form-group row">
+							<label for="DeskSetTakeout" class="col-sm-3 control-label">是否接受外卖</label>
+							<div class="col-sm-8 check">
+								<div class="col-sm-6">
+									<input name="DeskSetTakeout" type="radio" ng-value="1" ng-model="desk.TakeOut"> 是
+								</div>
+								<div class="col-sm-6">
+									<input name="DeskSetTakeout" type="radio" ng-value="0" ng-model="desk.TakeOut"> 否
+								</div>
+							</div>
+						 </div>
+						
+					</form>
+				  </div>
+				  <div class="modal-footer">
+				  <button class="btn btn-warning btn-lg " ng-show="editflag" ng-click="deletedesk(desk)">删除</button>
+				  <button class="btn btn-warning btn-lg " ng-show="editflag" ng-click="editdesksave(desk)">保存</button>
+				  <button class="btn btn-warning btn-lg " ng-show="!editflag" ng-click="adddesks(desk)">创建</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+			</div>
+			

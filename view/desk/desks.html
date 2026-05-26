@@ -1,0 +1,54 @@
+<div id="desk">
+	<div class="desk-content">
+		<div ng-click="ActiveDesk(x.DeskId,x.DeskState)" ng-repeat="x in fName" class="desk" ng-class="{'desk-null':x.DeskState==0,'desk-order':x.DeskState==1,'desk-payment':x.DeskState==2}">
+			<div ng-class="{'null':x.DeskState==0,'order':x.DeskState==1,'payment':x.DeskState==2}">
+				<div ng-class="{'null-header':x.DeskState==0,'order-header':x.DeskState==1,'payment-header':x.DeskState==2}">
+					<i class="glyphicon glyphicon-flag deskIcon"></i>
+					<div class="deskNum">{{x.DeskName}}</div>
+				</div>
+				<div ng-class="{'null-content':x.DeskState==0,'order-content':x.DeskState==1,'payment-content':x.DeskState==2}">
+					<div class="deskState" ng-if="x.DeskState == 0">(空桌)</div>
+					<div class="deskState" ng-if="x.DeskState == 1">未支付</div>
+					<div class="deskState" ng-if="x.DeskState == 2">已支付</div>
+					<div class="deskAmount" ng-if="x.DeskState == 0"></div>
+					<div class="deskAmount" ng-if="x.DeskState == 1" data-ng-bind="'￥'+x.AccountPayable"></div>
+					<div class="deskAmount" ng-if="x.DeskState == 2" data-ng-bind="'￥'+x.AccountPayable"></div>
+
+				</div>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+	<div class="content-bottom">
+		<ul class="nav nav-tabs">
+			<li class="desk-all" ng-click="GetDeskes(-1)">
+				<a href="" title="全部餐桌">
+					<span>全部餐桌</span>
+				</a>
+			</li>
+			<li class="desk-menus-order" ng-click="GetDeskes(1)">
+				<a href="" title="未支付">
+					<i class="glyphicon glyphicon-flag"></i>
+					<span>未支付</span>
+				</a>
+			</li>
+			<li class="desk-menus-payment hidden-in" ng-click="GetDeskes(2)">
+				<a href="" title="已支付">
+					<i class="glyphicon glyphicon-flag"></i>
+					<span>已支付</span>
+				</a>
+			</li>
+
+			<li class="desk-menus-null" ng-click="GetDeskes(0)">
+				<a href="" title="空桌">
+					<span>空桌</span>
+				</a>
+			</li>
+			<li class="desk-menus-sweep" ng-click="CleanRSDesk()">
+				<a href="" title="清台">
+					<i class="fa fa-fw fa-paint-brush" style="font-size:24px; color:#fff"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

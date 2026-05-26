@@ -1,0 +1,1131 @@
+#setting .wrapper {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	bottom: 0;
+	box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
+	left: 5px;
+	overflow: hidden;
+	position: absolute;
+	right: 5px;
+	top: 0px;
+}
+
+#sidebar {
+	background-color: #2c3e50;
+	text-align: center;
+	width: 80px;
+	z-index: 1;
+}
+
+.ccc {
+	height: 100%;
+}
+
+.tools .breadcrumb .title {
+	color: #1abc9c;
+	font-weight: 800;
+}
+
+.breadcrumb>li {
+	display: inline-block;
+}
+
+.tools .breadcrumb {
+	border-bottom: 1px solid #dddddd;
+	border-radius: 0;
+	padding: 15px 20px;
+}
+
+.breadcrumb {
+	background-color: #ecf0f1;
+	list-style: outside none none;
+	margin-bottom: 20px;
+}
+
+.tools .toolbar {
+	border-bottom: 0 none;
+	float: right;
+	height: 50px;
+	margin-right: 10px;
+	margin-top: -70px;
+	padding: 8px;
+}
+
+.tools .btn-group,
+.tools .label,
+.tools form {
+	display: inline-block;
+	float: right;
+}
+
+.btn-group,
+.btn-group-vertical {
+	position: relative;
+	vertical-align: middle;
+}
+
+.tools .btn-group .btn span.badge {
+	background-color: #2c3e50;
+	font-size: 0.7em;
+	font-weight: 200;
+	padding: 3px 5px;
+}
+
+.tools .btn-success .badge,
+.tools .btn-group .btn .badge {
+	color: #1abc9c;
+}
+
+#setting .btn .badge {
+	position: relative;
+	top: -1px;
+}
+
+#setting .badge {
+	border-radius: 10px;
+	display: inline-block;
+	line-height: 1;
+	min-width: 10px;
+	text-align: center;
+	vertical-align: baseline;
+	white-space: nowrap;
+}
+
+#settingContent {
+	background-color: white;
+	//margin-top: 53px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	margin-left: 80px;
+}
+
+#settingContent,
+#sidebar {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#sidebar i#toggle {
+	color: #3e5771;
+	display: inline-block;
+	margin-top: 20px;
+	font-size: 25px;
+	cursor: pointer;
+}
+
+#sidebar i#toggle p {
+	font-size: 16px;
+}
+
+#sidebar i#toggle:hover {
+	color: #1abc9c;
+}
+
+#sidebar ul#dock {
+	border-right: 1px solid #1a242f;
+	color: #ecf0f1;
+	margin: -15px 0 0;
+	padding: 0;
+	text-align: center;
+	width: 80px;
+}
+
+#sidebar ul#dock li.launcher {
+	cursor: pointer;
+	list-style: outside none none;
+	margin-top: 35px;
+	height: 30px;
+}
+
+#sidebar ul#dock li.launcher>i {
+	font-size: 28px;
+	margin-bottom: -2px;
+}
+
+#beaker {
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-size: 100px auto;
+	bottom: 5px;
+	height: 24px;
+	margin-left: 33px;
+	position: absolute;
+	width: 12px;
+}
+
+#sidebar ul#dock li.launcher:hover>i,
+#sidebar ul#dock li.launcher:hover>a,
+#sidebar ul#dock li.launcher.active>i,
+#sidebar ul#dock li.launcher.active>a {
+	color: #1abc9c;
+	transition-duration: 0.4s;
+	transition-property: color;
+	transition-timing-function: ease-in-out;
+}
+
+#sidebar ul#dock li.launcher>a {
+	color: #ecf0f1;
+	display: block;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	letter-spacing: 0;
+	height: 36px;
+	margin-top: -36px;
+	padding-top: 36px;
+	position: relative;
+	text-decoration: none;
+	background: transparent none repeat scroll 0 0;
+}
+
+.tools .btn-success,
+.tools .btn-group .btn {
+	background-color: #1abc9c;
+	border-color: #17a689;
+	color: white;
+}
+
+.tools .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.tools .btn-group>.btn:first-child {
+	margin-left: 0;
+}
+
+.tools .btn-group>.btn,
+.btn-group-vertical>.btn {
+	float: left;
+	position: relative;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+	display: block;
+}
+
+.sprite-image,
+#beaker {
+	background-image: url("../images/sprite-8460f675.png");
+}
+
+#settingContent {
+	background: #BDC3C7;
+	box-shadow: 0px 0px 2px 2px #BDC3C7;
+}
+
+
+/*员工设置*/
+
+#userSetting>ul {
+	height: 85%;
+	overflow-y: auto;
+}
+
+#userSetting>ul span {
+	width: 16%;
+	display: inline-table;
+	text-align: center;
+}
+
+#userSetting>ul>li.userItem span {
+	display: inline-block;
+	border-right: 1px solid #a1adb7;
+	color: #666699;
+	font-size: 12px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #0E90D2;
+}
+
+#userSetting>ul>li {
+	margin: 5px 15px;
+	padding: 10px 10px;
+	height: 50px;
+	line-height: 30px;
+}
+
+#userSetting>ul>li.heading {
+	margin-bottom: 10px;
+	color: #444;
+	font-size: 600;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+#userSetting>ul>li.userItem {
+	border: 1px solid #a1adb7;
+	border-radius: 10px;
+	cursor: pointer;
+	background: #B5BBC8;
+	//background: rgba(0, 0, 0, 0.02) none repeat scroll 0 0;
+	box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.02);
+}
+
+#userSetting>ul>li.cancel span {
+	text-decoration: line-through;
+	color: red;
+}
+
+#userSetting>ul>li.cancel button[name="disabled"],
+#userSetting>ul>li button[name="enabled"] {
+	display: none;
+}
+
+#userSetting>ul>li button[name="disabled"],
+#userSetting>ul>li.cancel button[name="enabled"] {
+	display: inline-block;
+}
+
+#userSetting>ul>li button {
+	margin-bottom: 16px;
+}
+
+
+/* 模态设置 */
+
+.myModal {
+	letter-spacing: 2px;
+}
+
+.myModal .form-group>label {
+	text-shadow: 1px 2px 5px #DFDFDF;
+	color: #7A828B;
+	font-weight: 600;
+}
+
+.myModal .form-group span {
+	font-size: 18px;
+	letter-spacing: 2px;
+}
+
+#discountSetting div.content .disSetting {
+	background: #E5E3DE;
+	border-radius: 5px;
+	margin-left: 20px;
+	margin-top: 20px;
+	height: 50px;
+	width: 290px;
+	border: 1px solid #fff;
+	box-shadow: 0px 0px 2px 2px #939393;
+	cursor: pointer;
+	color: #000;
+	display: inline-table;
+}
+
+#discountSetting div.content .disSetting:hover {
+	box-shadow: 0px 0px 8px 2px #939393;
+	text-shadow: 0px 2px 2px #939393;
+}
+
+#discountSetting div.content div.cancel>i {
+	background: #939393;
+	color: #fff;
+}
+
+#discountSetting div.content div.cancel .disContent {
+	color: #939393;
+}
+
+#discountSetting div.content .disSetting>i {
+	display: inline-table;
+	width: 20px;
+	height: 50px;
+	line-height: 50px;
+	margin: -1px;
+	background: #0E90D2;
+	color: yellow;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+#discountSetting div.content .disSetting .disContent {
+	display: inline-block;
+	width: 250px;
+}
+
+#discountSetting div.content .disSetting .disContent span {
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 120px;
+}
+
+#discountSetting div.content .disSetting .disContent .name {
+	padding-left: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#discountSetting div.content .disSetting .disContent span+span {
+	text-align: right;
+}
+
+#modalDiscountSetting .modal-body {
+	font-weight: 550;
+}
+
+#modalDiscountSetting .modal-header {
+	font-weight: 700;
+}
+
+.form-group div.check {
+	margin-top: 7px;
+}
+
+#deskSetting div.deskSettingContent {
+	background: url(../images/bg-01.png);
+	padding-top: 30px;
+	width: 95%;
+	/*height:86%;*/
+	margin: 20px auto;
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px 1px #000;
+}
+
+#menusSetting .content .left {
+	//background:red;
+	color: #798795;
+	font-family: "Lato", Helvetica, Arial, sans-serif;
+	font-size: 18px;
+	line-height: 1.7;
+	border-radius: 6px;
+	position: absolute;
+	top: 55px;
+	bottom: 10px;
+	left: 5px;
+	width: 265px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#menusSetting .content .left ul {
+	background-color: #2c3e50;
+	border-radius: 0 0 6px 6px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 50px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#menusSetting .content .left ul li {
+	background: #34495e none repeat scroll 0 0 / 20px 20px;
+	font-size: 14px;
+	padding-left: 10px;
+	position: relative;
+	transition: all 0.25s ease 0s;
+	margin-top: 1px;
+}
+
+.todo-ico {
+	float: left;
+	height: 50px;
+	width: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+
+#menusSetting .content .left ul li.active {
+	background: inherit;
+}
+
+#menusSetting .content .left ul li.active .todo-ico,
+#menusSetting .content .left ul li.active .todo-name {
+	color: #1abc9c;
+}
+
+#menusSetting .content .left ul li div.todo-op {
+	display: none;
+}
+
+#menusSetting .content .left ul li.active div.todo-op {
+	display: inline;
+}
+
+.todo-ico>img {
+	width: 40px;
+	height: 40px;
+	margin: 8px 5px 0px 0px;
+	font-size: 25px;
+}
+
+.todo-ico>i,
+.todo-ico>span {
+	margin: 13px 5px 0px 0px;
+	font-size: 30px;
+}
+
+.todo-name {
+	color: #ffffff;
+	font-size: 17px;
+	margin: 1px 0 3px;
+	font-family: inherit;
+	font-weight: 700;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow-x: hidden;
+	float: left;
+	width: 140px;
+	height: 50px;
+	line-height: 50px;
+	cursor: pointer;
+}
+
+.todo-op {
+	float: left;
+	font-size: 25px;
+	height: 50px;
+	line-height: 50px;
+	padding-left: 10px;
+	cursor: pointer;
+}
+
+.todo-name:hover,
+.todo-op:hover {
+	color: #1abc9c;
+	transition: all 0.5s ease 0s;
+}
+
+.todo-search {
+	background: #1abc9c none repeat scroll 0 0 / 16px 16px;
+	border-radius: 6px 6px 0 0;
+	color: #34495e;
+	padding: 10px 25px 20px;
+	position: relative;
+	height: 50px;
+}
+
+.todo-search-field {
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+	border: medium none;
+	box-shadow: none;
+	color: #34495e;
+	font-size: 19px;
+	font-weight: 700;
+	line-height: 23px;
+	margin: 0;
+	outline: medium none;
+	padding: 5px 0;
+	text-indent: 0;
+	width: 100%;
+}
+
+#menusSetting .content .right {
+	position: absolute;
+	top: 55px;
+	bottom: 10px;
+	left: 270px;
+	right: 0px;
+	overflow-y: auto;
+	overflow-x: hide;
+	padding: 10px 10px;
+}
+
+#menusSetting .content .right ul {
+	//background:#1ABC9C;
+}
+
+#menusSetting .content .right ul li {
+	background: url(../images/menusItem.png) no-repeat 0px 5px;
+	width: 250px;
+	height: 74px;
+	padding: 10px 0px 5px 70px;
+	border: 1px solid #444;
+	border-radius: 5px;
+	box-shadow: 0px 0px 2px #444;
+	color: #000;
+	font-family: "Lato", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	display: inline-block;
+	margin: 5px 5px;
+}
+
+#menusSetting .content .right ul li span {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	height: 35px;
+}
+
+#menusSetting .content .right ul li:hover {
+	text-shadow: 0px 0px 3px #444;
+	box-shadow: 0px 0px 5px #444;
+}
+
+#modalMenusSetPic .upLoad {
+	background-size: 300px 200px;
+	background-repeat: no-repeat;
+	margin: 20px auto;
+	height: 200px;
+	width: 300px;
+	border-radius: 2px;
+	border: 1px dashed #9A9A9A;
+	box-shadow: 0px 0px 10px 3px #9A9A9A inset;
+	text-align: center;
+}
+
+#modalMenusSetPic .upLoad label {
+	margin-top: 100px;
+}
+
+#modalMenusSetPic .upLoad i {
+	font-size: 40px;
+}
+
+#modalMenusSetPic .upLoad input {
+	position: absolute;
+	width: 300px;
+	height: 200px;
+	left: 150px;
+	top: 75px;
+	bottom: 30px;
+	font-family: Arial;
+	font-size: 118px;
+	margin: 0px;
+	padding: 0px;
+	cursor: pointer;
+	opacity: 0;
+}
+
+#modalMenusSetTag .left,
+#modalMenusSetTag .right {
+	margin: 10px auto;
+	width: 100%;
+}
+
+.tags span {
+	display: inline-block;
+	margin-bottom: 5px;
+	margin-left: 5px;
+}
+
+.tags {
+	background-color: #fff;
+	//border: 1px solid #d5d5d5;
+	color: #777;
+	display: inline-block;
+	padding: 4px 6px;
+}
+
+.tags span button {
+	float: none;
+	vertical-align: middle;
+	margin-left: 5px;
+	margin-bottom: 3px;
+}
+
+.nav-dill {
+	//border-bottom: 1px solid #ddd;
+}
+
+.nav-dill>li {
+	float: left;
+	margin-bottom: -1px;
+	text-align: center;
+}
+
+.nav-dill-2>li {
+	width: 50%;
+}
+
+.nav-dill-3>li {
+	width: 33%;
+}
+
+.nav-dill-4>li {
+	width: 25%;
+}
+
+.nav-dill-5>li {
+	width: 20%;
+}
+
+.nav-dill-6>li {
+	width: 16%;
+}
+
+.nav-dill-7>li {
+	width: 14%;
+}
+
+.nav-dill-8>li {
+	width: 12.5%;
+}
+
+.nav-dill-9>li {
+	width: 11%;
+}
+
+.nav-dill-10>li {
+	width: 10%;
+}
+
+.nav-dill-max>li {
+	max-width: 150px;
+}
+
+.nav-dill>li>a {
+	border: 1px solid transparent;
+	//border-radius: 4px 4px 0 0;
+	line-height: 1.42857;
+	margin-right: 2px;
+	color: #555;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.nav-dill>li>a:hover,
+.nav-dill>li>a:focus,
+.nav-dill>li.active>a:hover {
+	background: #0E90D2;
+	color: #fff;
+	cursor: pointer;
+}
+
+.nav-dill>li.active>a,
+.nav-dill>li.active>a:focus {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background: none;
+	border-bottom: 2px solid #0E90D2;
+	color: #0E90D2;
+	cursor: default;
+}
+
+.nav-dill>li.active>a:hover .nav-dill.nav-justified {
+	border-bottom: 0 none;
+	width: 100%;
+}
+
+.nav-dill.nav-justified>li {
+	float: none;
+}
+
+.nav-dill.nav-justified>li>a {
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+.nav-dill.nav-justified>.dropdown .dropdown-menu {
+	left: auto;
+	top: auto;
+}
+
+
+/*会员设置*/
+
+#memberCard div,
+#memberCard ul,
+#memberType .CardType ul {
+	margin: 10px 0px 0px 5px;
+}
+
+#memberCard ul.CardList {
+	overflow: auto;
+	//margin:0px 0px 0px 0px;
+}
+
+#memberCard ul.CardList span {
+	width: 12%;
+	display: inline-table;
+	text-align: center;
+}
+
+#memberCard ul.CardList>li.CardItem span,
+#memberType ul.CardType>li.CardTypeItem span {
+	display: inline-block;
+	border-right: 1px solid #a1adb7;
+	//color:#666699;
+	font-size: 12px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #0E90D2;
+}
+
+#memberCard ul.CardList>li,
+#memberType ul.CardType>li {
+	margin: 5px 15px;
+	padding: 10px 10px;
+	line-height: 30px;
+}
+
+#memberCard ul.CardList>li.heading,
+#memberType ul.CardType>li.heading {
+	margin-bottom: 10px;
+	color: #444;
+	font-size: 600;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+#memberCard ul.CardList>li.CardItem,
+#memberType ul.CardType>li.CardTypeItem {
+	border: 1px solid #a1adb7;
+	border-radius: 10px;
+	cursor: pointer;
+	background: #ddd;
+	height: 50px;
+	//background: rgba(0, 0, 0, 0.02) none repeat scroll 0 0;
+	box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.02);
+}
+
+#memberCard ul.CardList>li.cancel span {
+	text-decoration: line-through;
+	color: red;
+}
+
+#memberCard ul.CardList>li.cancel button[name="disabled"],
+#memberCard ul.CardList>li button[name="enabled"] {
+	display: none;
+}
+
+#memberCard ul.CardList>li button[name="disabled"],
+#memberCard ul.CardList>li.cancel button[name="enabled"] {
+	display: inline-block;
+}
+
+#memberCard ul.CardList>li button,
+#memberType ul.CardType>li button {
+	vertical-align: top;
+}
+
+
+/*memberType*/
+
+#memberType ul.CardType {
+	overflow: auto;
+	//margin:0px 0px 0px 0px;
+}
+
+#memberType ul.CardType span {
+	width: 25%;
+	display: inline-table;
+	text-align: center;
+}
+
+.wa_message {
+	font-family: "微软雅黑";
+	color: #000044;
+	margin-left: 30px;
+}
+
+.error_message_border {
+	border: 1px solid red;
+}
+
+#modalMemberPassword .errormessage {
+	width: 65%;
+	border-radius: 5px;
+	background: rgba(0, 0, 0, 0.1);
+	text-align: center;
+	font-weight: 600;
+	font-size: medium;
+	margin-left: 26% !important;
+	opacity: 0.7;
+}
+
+#modalMemberPassword .errormessage>label {
+	color: red;
+}
+
+#modalDiscountMenus .modal-body .form-horizontal .addmenu {
+	height: 300px;
+	overflow-y: auto;
+}
+
+#modalDiscountMenus .modal-body .form-horizontal .addmenu .menudet {
+	width: 260px;
+	font-weight: 600;
+	border-radius: 5px;
+	border: 1px solid gainsboro;
+	background: beige;
+	margin: 5px 5px 0;
+	line-height: 30px;
+	display: inline-block;
+}
+
+#modalDiscountMenus .modal-body .form-horizontal .addmenu .menudet .name {
+	font-family: "微软雅黑";
+	margin-left: 10px;
+	margin-top: 4px;
+	color: #7A828B;
+	width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: inline-block;
+}
+
+#modalDiscountMenus .modal-body .form-horizontal .addmenu .menudet .close {
+	margin-top: 10px;
+	margin-right: 3px;
+	color: red;
+	outline: none;
+}
+
+.deskName {
+	margin: 0 3px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.errormessage1 {
+	width: 360px;
+	padding: 10px 0;
+	border-radius: 5px;
+	background: rgba(0, 0, 0, 0.1);
+	color: red;
+	margin: 0 5px;
+	text-align: center;
+	font-weight: 600;
+	opacity: 0.7;
+}
+
+.tab-content .form-horizontal .aform {
+	display: inline-block;
+	margin-right: 10%;
+}
+
+#basicInformation .heading {
+	margin: 25px 0 0 40px;
+	font-family: "微软雅黑";
+	color: rgba(0, 0, 0, 0.7);
+	opacity: 0.5;
+	font-weight: 600;
+	font-size: 16px;
+}
+
+.tab-content .form-horizontal .form-group .choose {
+	margin: 10px 0 0 40px;
+	font-family: "微软雅黑";
+	color: rgba(0, 0, 0, 0.7);
+	opacity: 0.9;
+	font-size: 15px;
+}
+
+.tab-content .form-horizontal .form-group .choose>input[type="radio"] {
+	vertical-align: top;
+}
+
+.tab-content .form-horizontal .form-group .choose>.tips {
+	margin-left: 3%;
+}
+
+.tab-content .form-horizontal .form-group .choose>.downloadchoose {
+	list-style: circle;
+	margin-top: 5px;
+	margin-left: 50px;
+}
+
+.tab-content .form-horizontal .form-group .choose>.downloadchoose li>a {
+	cursor: pointer;
+}
+
+.tab-content .form-horizontal .form-group .choose>.toprint>li {
+	margin: 8px 0;
+}
+
+.tab-content .form-horizontal .form-group .choose>.toprint>li>label {
+	margin: 0 10px;
+}
+
+.tab-content .saveprintbtn {
+	margin-left: 6%;
+	margin-top: 3%;
+	width: 200px;
+}
+
+#printTabs>.nullinfo {
+	margin: 25px 0 0 8%;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	width: 40%;
+	background: snow;
+	text-align: center;
+}
+
+#printTabs>.nullinfo>p {
+	margin: 2% 5%;
+	text-align: left;
+	font-family: "微软雅黑";
+	color: rgba(0, 0, 0, 0.7);
+	opacity: 0.9;
+	font-size: 15px;
+}
+
+#printTabs>.nullinfo>.addtabs {
+	width: 80%;
+	margin: 3% 0;
+}
+
+#printTabs>.printtabinfo .addtabsbtn {
+	background-color: #1abc9c;
+	border-color: #17a689;
+	color: white;
+	margin: 2% 0 0 2%;
+}
+#printTabs>.printtabinfo>.moretabs{
+	margin-left:5% ;
+	margin-top:5px ;
+}
+#printTabs>.printtabinfo>.moretabs>.tabs {
+	background: #E5E3DE;
+	border-radius: 5px;
+	margin-left: 20px;
+	margin-top: 20px;
+	height: 50px;
+	width: 260px;
+	border: 1px solid #fff;
+	box-shadow: 0px 0px 2px 2px #939393;
+	cursor: pointer;
+	color: #000;
+	display: inline-table;
+}
+
+#printTabs>.printtabinfo>.moretabs>.tabs>img {
+	width: 15%;
+	margin-left: 4%;
+	margin-bottom: 2%;
+	vertical-align: middle;
+}
+#printTabs>.printtabinfo>.moretabs>.tabs>div {
+	display: inline-block;
+	width: 60%;
+	margin: 0 2% 0 4%;
+}
+
+#printTabs>.printtabinfo>.moretabs>.tabs>div>p {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-top: 10%;
+}
+#cloudPrintset .printlist{
+	margin-top: 2%;
+}
+#cloudPrintset .printlist>.printlistlabel{
+    color: #7A828B;
+    font-weight: 600;
+    margin-left:5% ;
+}
+#cloudPrintset .printlist>.printlistselect{
+    display: inline-block; 
+    width: 60%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.printset{
+	margin-top:2% ;
+}
+.printset>span{
+	display:block;
+	margin: 10px;
+	
+}
+.printset>span>label{
+    color: #7A828B;
+    font-weight: 600;
+    margin-left: 5%;
+    width: 20%;
+    margin-right: 5px;
+}
+.printset>span>input[type='text']{
+    display: inline-block;
+    width: 60%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    }
+
+.printset>span>input[type='radio']{
+	display: inline-block;
+	margin:5px 0;
+}
+.printset>span>.toprint{
+	font-size: medium;
+	font-weight: 500;
+	opacity: 0.7;
+	color: #000000;
+}
+.receiptprint>.toprint{
+	margin-left: 20%;
+	margin-top:20px ;
+}
+.receiptprint>.toprint>li{
+	display: inline-table;
+	margin: 3px 2%;
+	width: 100px;
+}
+.receiptprint>.toprint>li>label{
+	margin-left:5px ;
+}
+.tagprint{
+	margin: 15px 13%  5px 22%;
+}
+.creattabs>.tags-printer{
+	margin-top: 10px;
+}
+.creattabs>.tags-printer>li{
+	min-width: 50px;
+	margin:5px 0;
+	height:30px;
+}
+.creattabs>.tags-printer>li>label{
+	margin-top:7px;
+	font-size: .3em;
+}
+.printlistbtn{
+	margin:3% 15% 3% 0;
+	text-align: right;
+}
+.printsettitle{
+	font-size: larger;
+	font-weight: 600;
+	margin-bottom: 10px;
+}

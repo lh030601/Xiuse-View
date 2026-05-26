@@ -1,0 +1,28 @@
+<div class="keyboard" id="keyboardBill">
+	<p class="input-group calc-display">
+		<input type="text" name="{{res}}" id="{{res}}" value="0" class="form-control calc-display-input" onfocus="this.blur()">
+		<span ng-click="minus()" class="input-group-addon btn"><i class="glyphicon glyphicon-arrow-left"></i></span >
+	</p>
+	<table class="table table-condensed calc"  border="1">
+		<tr>
+		<td ng-click="CalcNum('7')">7</td>
+		<td ng-click="CalcNum('8')">8</td>
+		<td ng-click="CalcNum('9')">9</td>
+		</tr>
+		<tr>
+		<td ng-click="CalcNum('4')">4</td>
+		<td ng-click="CalcNum('5')">5</td>
+		<td ng-click="CalcNum('6')">6</td>
+		</tr>
+		<tr>
+		<td ng-click="CalcNum('1')">1</td>
+		<td ng-click="CalcNum('2')">2</td>
+		<td ng-click="CalcNum('3')">3</td>
+		</tr>
+		<tr>
+		<td ng-click="CalcNum('0')">0</td>
+		<td ng-click="CalcNum('.')">.</td>
+		<td ng-click="CNum('0')">C</td>
+		</tr>
+	</table>
+</div>

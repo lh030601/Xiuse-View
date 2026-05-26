@@ -1,0 +1,460 @@
+<!--
+    	作者：xcf
+    	时间：2017-04-12
+    	描述：
+    -->
+<div class="tab-pane bg active" id="account">
+	<ul class="nav nav-pills visible-xs account-top">
+		<li class="active">
+			<a href="#account_desk" data-toggle="tab">账单详情</a>
+		</li>
+		<li>
+			<a href="#account_pay_type" data-toggle="tab">折扣信息</a>
+		</li>
+		<li>
+			<a href="#account_list" data-toggle="tab">账单金额</a>
+		</li>
+	</ul>
+	<div class="tab-content bg-min">
+		<div id="account_desk" class=" tab-pane active bg">
+			<div class="panel panel-primary bg">
+				<div class="panel-heading">
+					<label class="panel-title">
+										<i class="glyphicon glyphicon-flag"></i>
+										<span name="currentNum" class="desk-name" data-Id="{{CurrentDesk.DeskId}}">{{CurrentDesk.DeskName}}</span>
+									</label>
+					<label class="panel-title pull-right" name="account_desk" ng-click="PopDesk_modal()">
+										<span><i class="glyphicon glyphicon-transfer"></i>切换</span>
+									</label>
+				</div>
+				<div class="panel-body">
+					<div class="remark" ng-click="PopRemak()" ng-model="Remark">
+						<i class="glyphicon glyphicon-edit">添加备注</i>
+					</div>
+					<div class="opreate">
+						<span class="waiter" data-serivce="{{selectedName.UserId}}" ng-click="PopSerive()">{{selectedName.UserName}}</span>
+						<span class="print" ng-click="PopPrint()"><i class="glyphicon glyphicon-print"></i>打印单据</span>
+					</div>
+					<div class="ordered">已点菜品 {{OrderDetail.Order.DishCount}}</div>
+					<ul class="list">
+						<li ng-class="{true: '', false: 'ds_disable'}[IsDiscount(x.MenuDiscount)]" ng-repeat="x in OrderDetail.Ordermenu">
+							<div class="name">{{x.MenuName}}</div>
+							<div ng-class="{true:'discount active',false:'discount'} [DisState(x.DisState)]" ng-mouseenter="ShowTip($event)" ng-mouseleave="HideTip($event)" data-toggle="tooltip" data-placement="right"  title="优惠：{{x.MenuDiscount.DiscountName}}">
+								<a ng-click="ActiveDsState(x)">
+				                  <i class="fa fa-fw fa-certificate"></i>
+				                  <span class="label label-warning">折扣</span>
+				                </a>
+							</div>
+							<div ng-class="{true:'price-ds',false:'price'} [DisState(x.DisState)]">
+								<span>￥</span>
+								<span name="unit">{{SingleDsPrice(x)|number:2}}</span>
+								<span>X</span>
+								<span name="num">{{x.MenuNum}}</span>
+								<span class="label"><del>￥{{x.MenuPrice|number:2}}</del></span>
+							</div>
+						</li>
+						
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<div id="account_pay_type" class="tab-pane  bg">
+			<div class="pay_top">
+				<div class="add_discount" title="添加折扣及小费" ng-click="AddDiscount()">
+					<span class="fa fa-fw fa-user-plus plus"></span>添加折扣及小费
+				</div>
+				<ul class="discount_content">
+					<li class="percent" name="Bill.EntireDiscount.DiscountId" ng-if="!(Bill.EntireDiscount==null||Bill.EntireDiscount==undefined)">
+						<div class="info-box bg-aqua">
+							<span class="info-box-icon"><i class="fa fa-sort-amount-desc"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">{{Bill.EntireDiscount.DiscountName}}</span>
+								<span class="info-box-number">-{{CalcDiscount(Bill)|number:2}}</span>
+								<div class="progress hidden-xs">
+									<div style="width: {{Bill.EntireDiscount.DiscountContent}}%" class="progress-bar"></div>
+								</div>
+								<span class="progress-description hidden-xs">{{Bill.EntireDiscount.DiscountName}}</span>
+							</div>
+							<!-- /.info-box-content -->
+							<span class="info-box-btn" ng-click="RemoveEntireDiscount()"><i class="glyphicon glyphicon-remove"></i></span>
+							<div class="clearfix"></div>
+						</div>
+					</li>
+					<li class="percent" name="x.DiscountId" ng-repeat="x in Bill.Discount">
+						<div class="info-box bg-aqua">
+							<span class="info-box-icon"><i class="fa fa-sort-amount-desc"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">{{x.DiscountName}}</span>
+								<span class="info-box-number">-{{CalcDiscount(x,Bill)|number:2}}</span>
+								<div class="progress hidden-xs">
+									<div style="width: {{x.DiscountContent}}%" class="progress-bar"></div>
+								</div>
+								<span class="progress-description hidden-xs">{{x.DiscountName}}</span>
+							</div>
+							<!-- /.info-box-content -->
+							<span class="info-box-btn" ng-click="RemoveDiscout(x)"><i class="glyphicon glyphicon-remove"></i></span>
+							<div class="clearfix"></div>
+						</div>
+					</li>
+					<li class="same" name="same" ng-if="Bill.SameChange != 0&&Bill.SameChange!=undefined">
+						<div class="info-box bg-green">
+							<span class="info-box-icon"><i class="fa fa-scissors"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">抹零</span>
+								<span class="info-box-number">-{{Bill.SameChange|number:2}}</span>
+								<div class="progress hidden-xs">
+									<div style="width: {{Bill.SameChange*100}}%" class="progress-bar"></div>
+								</div>
+								<span class="progress-description hidden-xs">
+												店家优惠
+											  </span>
+							</div>
+							<!-- /.info-box-content -->
+							<span class="info-box-btn" ng-click="RemoveWip()"><i class="glyphicon glyphicon-remove"></i></span>
+							<div class="clearfix"></div>
+						</div>
+					</li>
+					<li class="tip" name="tip" ng-if="Bill.Tip!=0&&Bill.Tip != undefined">
+						<div class="info-box bg-yellow">
+							<span class="info-box-icon"><i class="fa fa-smile-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">小费</span>
+								<span class="info-box-number">{{Bill.Tip|number:2}}</span>
+								<div class="progress hidden-xs">
+									<div style="width: {{Bill.Tip}}%" class="progress-bar"></div>
+								</div>
+								<span class="progress-description hidden-xs">
+												支付小费
+											  </span>
+							</div>
+							<!-- /.info-box-content -->
+							<span class="info-box-btn" ng-click="RemoveTip()"><i class="glyphicon glyphicon-remove"></i></span>
+							<div class="clearfix"></div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="pay_bottom">
+				<h1 class="text-center">支付方式</h1>
+				<payType class="active"  ng-class="{true: 'enabled', false: ''}[Bill.Cash>0]" ng-click="PaySelect(0)">
+					<div class="title">
+						<span class="fa fa-fw fa-rmb tag"></span>
+						<span>现金</span>
+					</div>
+					<div class="num">
+						<span class="rmb">{{Bill.Cash|number:2}}</span>
+						<span class="fa fa-fw fa-check-square-o state"></span>
+					</div>
+				</payType>
+				<payType ng-class="{true: 'enabled', false: ''}[Bill.BankCard>0]" ng-click="PaySelect(1)">
+					<div class="title">
+						<span class="fa fa-fw fa-credit-card tag"></span>
+						<span>银行卡</span>
+					</div>
+					<div class="num">
+						<span class="rmb">{{Bill.BankCard|number:2}}</span>
+						<span class="fa fa-fw fa-check-square-o state"></span>
+					</div>
+				</payType>
+				<payType ng-class="{true: 'enabled', false: ''}[Bill.WeiXin>0]" ng-click="PaySelect(2)">
+					<div class="title">
+						<span class="fa fa-fw fa-wechat tag"></span>
+						<span>微信</span>
+					</div>
+					<div class="num">
+						<span class="rmb">{{Bill.WeiXin|number:2}}</span>
+						<span class="fa fa-fw fa-check-square-o state"></span>
+					</div>
+				</payType>
+				<payType ng-class="{true: 'enabled', false: ''}[Bill.MembersCard>0]" ng-click="PaySelect(3)">
+					<div class="title">
+						<span class="fa fa-fw fa-vimeo-square tag"></span>
+						<span>会员卡</span>
+					</div>
+					<div class="num">
+						<span class="rmb">{{Bill.MembersCard|number:2}}</span>
+						<span class="fa fa-fw fa-check-square-o state"></span>
+					</div>
+				</payType>
+
+				<payType ng-class="{true: 'enabled', false: ''}[Bill.Alipay>0]" ng-click="PaySelect(4)">
+					<div class="title">
+						<span class="fa fa-fw  fa-money tag"></span>
+						<span>支付宝</span>
+					</div>
+					<div class="num">
+						<span class="rmb">{{Bill.Alipay|number:2}}</span>
+						<span class="fa fa-fw  fa-check-square-o state"></span>
+					</div>
+				</payType>
+
+			</div>
+
+		</div>
+		<div id="account_list" class="tab-pane  bg">
+			<div class="cash-out hidden-xs">
+				<span class="btn btn-warning " ng-click="Checkout()">完成收银</span>
+			</div>
+			<div class="cash-out btn-group visible-xs">
+				<span class="btn btn-warning " ng-click="Checkout()">完成收银</span>
+				<button class="btn btn-warning print visible-xs" ng-click="PopPrint()">
+					<span class="glyphicon glyphicon-print"></span>
+				</button>
+			</div>
+			<div class="cash-list">
+				<div class="call-bill">
+					<bill data-type="billTotal" id="billTotal"><span>账单金额</span><span name="money">{{Bill.Total|number:2}}</span></bill>
+					<div name="Discount">
+						<bill data-type="billSmall" id="billSmall" ng-if="Bill.SameChange != 0&&Bill.SameChange!=undefined"><span>抹零</span><span name="money">-{{Bill.SameChange|number:2}}</span></bill>
+						<bill data-type="billTip" id="billTip" ng-if="Bill.Tip!=0&&Bill.Tip != undefined"><span>小费</span><span name="money">{{Bill.Tip|number:2}}</span></bill>
+						<bill data-type="billDue"><span>整单优惠</span><span name="money">{{-Bill.Concessions|number:2}}</span></bill>
+						<bill data-type="billDue"><span>特价菜品优惠</span><span name="money">{{-Bill.SingleConcessions|number:2}}</span></bill>
+					</div>
+					
+
+				</div>
+
+				<div class="close-bill">
+					<bill data-type="billDue" id="billDue"><span>应付</span><span name="money"><span class="fa fa-fw fa-bell-slash btn btn-bill" title="抹零" ng-click="AUTOWipe()"></span>{{Bill.AccountsPayable|number:2}}</span></bill>
+					<bill data-type="billCurrent" id="billCurrent"><span>现收</span><span name="money">{{Bill.CurrentPay|number:2}}</span></bill>
+					<bill data-type="billChange" id="billChange"><span>找零</span><span name="money"><span class="fa fa-fw fa-street-view btn btn-bill" title="小费" ng-click="AUTOTip()"></span>{{Bill.Change|number:2}}</span></bill>
+				</div>
+			</div>
+			<Calculator res="res" value="AccountValue"  model="AccountModel"></Calculator>
+		</div>
+	</div>
+</div>
+				
+
+<div name="Modal">
+	<!--
+    	作者：xcf
+    	时间：2017-04-12
+    	描述：添加备注
+    -->
+	<div id="addRemark" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" name="currentDesk">备注信息</h4>
+				</div>
+				<div class="modal-body">
+					<textarea class="form-control" maxlength="100" placeholder="备注信息" rows='3' ng-model="Remark"></textarea >
+		  </div>
+		  <div class="modal-footer">
+			<button class="btn btn-warning btn-lg btn-block" data-dismiss="modal" aria-label="Close">保存</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<!--打印单据-->
+	<div id="printContent" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" name="currentDesk">打印单据类型</h4>
+				</div>
+				<div class="modal-body">
+					<div id="printType">
+						<span class="btn btn-info btn-lg" ng-class="{active : active1}" ng-click="active1 = !active1" >对账单</span>
+						<span class="btn btn-info btn-lg" ng-class="{active : active2}" ng-click="active2 = !active2" >收款单</span>
+						<span class="btn btn-info btn-lg" ng-class="{active : active3}" ng-click="active3 = !active3">出品单</span>
+						<span class="btn btn-info btn-lg" ng-class="{active : active4}" ng-click="active4 = !active4">退菜单</span>
+						<span class="btn btn-info btn-lg" ng-class="{active : active5}" ng-click="active5 = !active5">传菜单</span>
+						<span class="btn btn-info btn-lg" ng-class="{active : active6}" ng-click="active6 = !active6">标签单</span>
+						<span class="btn btn-info btn-lg" ng-class="{active : active7}" ng-click="active7 = !active7">退菜单</span>
+						<span class="btn btn-info btn-lg" ng-class="{active : active8}" ng-click="active8 = !active8">退款单</span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-warning btn-lg btn-block" aria-label="Close" data-dismiss="modal">打印单据</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--选择服务员-->
+	<div id="waiter" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">选择服务员</h4>
+				</div>
+				<div class="modal-body">
+					<span>选择服务员：</span>
+					<select id="selectWaiter"  ng-model="selectedName" ng-options="x.UserName for x in Waiter">
+			 		<!--<option value="{{x.UserId}}" ng-repeat="x in Waiter">{{x.UserName}}</option>-->
+					</select>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-warning btn-lg btn-block" ng-click="CloseSerive()">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--折扣验证-->
+	<div id="discountValidate" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">统一验证折扣的</h4>
+				</div>
+				<div class="modal-body">
+					<span>选择餐厅管理员：</span>
+					<select   ng-model="selectedManageUser" ng-options="x.UserName for x in ManageUser">
+					</select>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-warning btn-lg btn-block" ng-click="ValidateDiscount()">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--折扣信息-->
+	<div id="modalDiscount" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" name="currentDesk">选择折扣</h4>
+		  </div>
+		  <div class="modal-body">
+			<ul class="nav nav-pills">
+				<li><a data-toggle="tab" href="/#percent" ng-click="discountValidate = false">全部折扣</a></li>
+				<li><a data-toggle="tab" href="/#wipe" ng-click="discountValidate = false">抹零</a></li>
+				<li><a data-toggle="tab" href="/#tip" ng-click="discountValidate = false">小费</a></li>
+			</ul>
+			<div class="tab-content">
+				<div id="percent" class="tab-pane bg fade in active">
+					<div class="item" name="{{x.DiscountId}}" ng-repeat="x in EntireDiscount" ng-click="AddOrderEntireDiscount(x)">
+						<span name="content">{{x.DiscountName}}</span>
+						<span name="percent" ng-if="x.DiscountType==0">{{x.DiscountContent}}%</span>
+						<span name="percent" ng-if="x.DiscountType==1">￥{{x.DiscountContent}}</span>
+						<span name="remark" style="display:none;"></span>
+					</div>
+				</div>
+				<div id="wipe" class="tab-pane bg fade">
+					<div class="keyboard">
+					<Calculator res="wipeRes" value="WipeAccountValue" model="WipeModel"></Calculator>
+					<button class="btn btn-warning btn-lg btn-block" ng-click="Wipe()" data-dismiss="modal">保存</button>
+					</div>
+				</div>
+				<div id="tip" class="tab-pane bg fade">
+					<Calculator res="tipRes" value="TipAccountValue" model="TipModel"></Calculator>
+					<button class="btn btn-warning btn-lg btn-block" ng-click="AddTip()" data-dismiss="modal">保存</button>
+				</div>
+				<div style="margin: 20px;" ng-show="discountValidate">
+				        <p>管理员输入密码确认</p>
+				        <div style="margin-top: 10px;">
+				            <select class="form-control input-sm adminSelect" ng-model="selectedManageUser" ng-options="x.UserName for x in ManageUser">  
+				            </select>
+				        </div>
+				        <div style="margin-top: 10px;">
+				            <input class="form-control input-sm" placeholder="密码" type="password" ng-model="Psw">
+				        </div>
+				        <div style="margin-top: 10px;">
+					  		<button class="btn btn-lg btn-info"  data-dismiss="modal" aria-label="Close">取消</button>
+							<button class="btn btn-lg btn-info" data-dismiss="modal" aria-label="Close" ng-click="ConfrimDicount(crruentDiscout)">确认</button>
+					  	</div>
+				    </div>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+	</div>
+
+	<!--搜索会员信息-->
+	<div id="Member" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">（秀餐）会员卡支付</h4>
+				</div>
+				<div class="modal-body">
+					<div class="input-group">
+					  <input type="text" class="form-control"  ng-model="MemberExp" placeholder="会员卡号、手机号"  ng-keyup="LookMemberEvent($event,MemberExp)">
+					  <div class="input-group-btn">
+					    <button class="btn btn-primary" ng-click="LookMember(MemberExp)">查询</button><button class="btn btn-primary" disabled="disabled">微信会员</button>
+					  </div>
+					</div>
+					<div>
+					 <div class="PayTable" ng-show="PayTable">
+					 	<table class="table table-bordered ">
+							<tr class="success">
+								<td>
+								<sapn>会员卡号：<span><span class="PayTableSpan">{{Member.MemberCardNo}}<span>
+							</td>
+							</tr>
+							<tr class="success"><td>
+								<span>会员名称：</span><span class="PayTableSpan">{{Member.MemberName}}({{Member.MemberClassifyId}})</span>
+								<span>手机号：</span><span class="PayTableSpan">{{Member.MemberCell}}</span>
+							</td></tr>
+							<tr class="danger"><td>
+								<span>账户：</span><span class="PayTableSpan">￥{{Member.MemberAmount|number:2}}</span>
+							</td></tr>
+						</table>
+					 </div>
+					 <div ng-show="PayTable">
+					 	<button type="button" class="btn btn-warning  btn-lg btn-block"  ng-click="PayMember()">支付</button></div>
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="MemberPass" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">（秀餐）支付密码</h4>
+				</div>
+				<div class="modal-body" >
+					<div class="input-group" style="width: 60%; margin-left: 20%;">
+					  <span class="input-group-addon" >请顾客输入密码</span>
+					  <input  class="form-control" type="password" ng-model="memberPass" placeholder="****" ng-keyup="CheckMemberPassEvent($event,memberPass)">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning  btn-lg btn-block" ng-click="CheckMemberPass(memberPass)">确认</button></div>
+				</div>
+			</div>
+		</div>
+		<div id="MemberPayInfo" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" ng-keyup="MemberPayEvent($event)">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">（秀餐）支付信息</h4>
+				</div>
+				<div class="modal-body">
+					<ul class="list-group">
+					  <li class="list-group-item">
+					  	<div class="row">
+						<div class="col-xs-6 PayTableSpan1">可用余额</div>
+  						<div class="col-xs-6 PayTableSpan1">￥{{Member.MemberAmount|number:2}}</div>
+  						</div>
+					  </li>
+					  <li class="list-group-item">
+					  	<div class="row">
+						<div class="col-xs-6 PayTableSpan1">支付金额</div>
+  						<div class="col-xs-6 PayTableSpan1">￥{{Bill.AccountsPayable|number:2}}</div>
+  						</div>
+					  </li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning  btn-lg btn-block " ng-click=MemberPay()>确认</button></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,20 @@
+define([
+	'ctrl/desks/DesksCtrl',
+	'ctrl/order/OrderBeforeCtrl',
+	'ctrl/order/OrderAfterCtrl',
+	'ctrl/sale/saleCtrl',
+	'ctrl/sale/analysisCtrl',
+	'ctrl/account/Account',
+	'ctrl/setting/SettingCtrl',
+	'ctrl/setting/memberSettingCtrl',
+	'ctrl/setting/menusSettingCtrl',
+	'ctrl/setting/discountSettingCtrl',
+	'ctrl/setting/deskSettingCtrl',
+	'ctrl/setting/userSettingCtrl',
+	'ctrl/setting/printSettingCtrl',
+	'ctrl/login/LoginCtrl',
+	'ctrl/register/RegisterCtrl',
+	'ctrl/Tab/TabCtrl'
+],function(){
+	
+})
